@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1280">
+    <meta name="google-site-verification" content="mgHjreij7WweystqPGh5Cz6ND0AWXI7Wxe2y7xdbfcI" />
+    <title>CANPOS - Phần mềm bán hàng & quản lý chuyên nghiệp thế hệ mới</title>
+    <meta name="description" content="CANPOS - Giải pháp quản lý bán hàng toàn diện cho F&B, bán lẻ, kho hàng, nhân sự và tính lương tự động. Hiện đại, nhanh chóng, kết nối loa thông báo và QR ngân hàng tự động.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" id="main-stylesheet">
+    <style>
+        /* Phong cách nền dự phòng để tránh trang bị trắng xóa khi mở local file */
+        body {
+            background-color: #130722;
+            color: #f3eff5;
+        }
+    </style>
+    <script>
+        // Kiểm tra xem trình duyệt có nạp được file CSS ngoài hay không
+        window.addEventListener('load', function() {
+            var sheet = document.getElementById('main-stylesheet');
+            console.log("CSS Link Href: " + sheet.href);
+        });
+    </script>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="header">
+        <div class="container navbar">
+            <a href="#" class="logo">
+                <img src="assets/logo.png" alt="CANPOS Logo" class="logo-img">
+                CAN<span class="logo-accent">POS</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="#features" class="nav-link">Tính Năng</a>
+                <a href="#downloads" class="nav-link">Tải Ứng Dụng</a>
+                <a href="#pricing" class="nav-link">Bảng Giá</a>
+                <a href="#guide" class="nav-link">Hướng Dẫn</a>
+                <a href="#contact" class="nav-link">Liên Hệ</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="#downloads" class="btn btn-secondary btn-sm" style="margin-right: 8px;">Dùng Thử</a>
+                <a href="https://app.canpos.vn/register" target="_blank" class="btn btn-primary btn-sm">Đăng Ký</a>
+            </div>
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-glow-1"></div>
+        <div class="hero-glow-2"></div>
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="badge">Phần Mềm Quản Lý Thế Hệ Mới</div>
+                <h1 class="hero-title">Đơn giản hóa bán hàng, quản lý tối ưu cùng <span class="text-gradient">CANPOS</span></h1>
+                <p class="hero-subtitle">Phần mềm quản lý bán hàng hiện đại, đơn giản, đầy đủ tính năng dành cho Cửa hàng bán lẻ, Quán cafe, Trà sữa, Quán ăn, Nhà hàng, Karaoke, Bi-a, Gym, Spa, Nha khoa, Trang sức... Hoạt động ổn định trên mọi thiết bị và hỗ trợ kết nối loa thông báo chuyển khoản ngân hàng nhanh chóng.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn btn-primary btn-lg">Liên Hệ Ngay <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#downloads" class="btn btn-secondary btn-lg"><i class="fa-solid fa-download"></i> Tải Ứng Dụng</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-num">99.9%</span>
+                        <span class="stat-label">Hoạt động ổn định</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">10k+</span>
+                        <span class="stat-label">Khách hàng tin dùng</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">24/7</span>
+                        <span class="stat-label">Hỗ trợ kỹ thuật</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="dashboard-mockup">
+                    <div class="mockup-header">
+                        <div class="mockup-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div class="mockup-title">CANPOS - Màn Hình Bán Hàng & Tính Tiền</div>
+                    </div>
+                    <div class="mockup-body pos-layout">
+                        <!-- Left Sidebar: Categories -->
+                        <div class="pos-sidebar">
+                            <div class="category-item active">TẤT CẢ</div>
+                            <div class="category-item"><span>8</span> NƯỚC ÉP</div>
+                            <div class="category-item"><span>2</span> CÀ PHÊ</div>
+                            <div class="category-item"><span>1</span> TIỀN GIỜ</div>
+                        </div>
+
+                        <!-- Middle: Product Grid -->
+                        <div class="pos-products">
+                            <!-- Search Bar -->
+                            <div class="pos-search-bar">
+                                <i class="fa-solid fa-arrow-left arrow-back"></i>
+                                <div class="search-input-wrapper">
+                                    <i class="fa-solid fa-keyboard keyboard-icon"></i>
+                                    <input type="text" placeholder="Nhập tên hoặc quét mã vạch" disabled>
+                                    <i class="fa-solid fa-barcode barcode-scanner-icon"></i>
+                                </div>
+                                <i class="fa-solid fa-trash-can trash-icon"></i>
+                                <i class="fa-solid fa-circle-plus add-icon"></i>
+                            </div>
+
+                            <!-- Products Grid -->
+                            <div class="products-grid">
+                                <div class="product-card">
+                                    <div class="product-img"><img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=150&auto=format&fit=crop&q=60" alt="ÉP THƠM"></div>
+                                    <div class="product-name">ÉP THƠM</div>
+                                    <div class="product-price">50.000</div>
+                                </div>
+                                <div class="product-card">
+                                    <div class="product-img"><img src="assets/logo.png" alt="Tiền Giờ Bida Lip" style="background:#7209b7; padding:4px;"></div>
+                                    <div class="product-name">Tiền Giờ Bida Lip</div>
+                                    <div class="product-price">20.000</div>
+                                </div>
+                                <div class="product-card">
+                                    <div class="product-img"><img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=150&auto=format&fit=crop&q=60" alt="ÉP TÁO"></div>
+                                    <div class="product-name">ÉP TÁO</div>
+                                    <div class="product-price">30.000</div>
+                                    <span class="stock-badge">-33</span>
+                                </div>
+                                <div class="product-card selected">
+                                    <span class="selected-badge">✓1</span>
+                                    <div class="product-img"><img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=150&auto=format&fit=crop&q=60" alt="ÉP DƯA LƯỚI"></div>
+                                    <div class="product-name">ÉP DƯA LƯỚI</div>
+                                    <div class="product-price">15.000</div>
+                                    <span class="stock-badge">-44</span>
+                                </div>
+                                <div class="product-card selected">
+                                    <span class="selected-badge">✓1</span>
+                                    <div class="product-img"><img src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=150&auto=format&fit=crop&q=60" alt="NƯỚC ÉP SƠ-RI"></div>
+                                    <div class="product-name">NƯỚC ÉP SƠ-RI</div>
+                                    <div class="product-price">35.000</div>
+                                    <span class="stock-badge">-53</span>
+                                </div>
+                                <div class="product-card selected">
+                                    <span class="selected-badge">✓2</span>
+                                    <div class="product-img"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=150&auto=format&fit=crop&q=60" alt="PHIN ĐEN ĐÁ"></div>
+                                    <div class="product-name">PHIN ĐEN ĐÁ</div>
+                                    <div class="product-price">12.000</div>
+                                    <span class="stock-badge">-60.5</span>
+                                </div>
+                                <div class="product-card">
+                                    <div class="product-img"><img src="https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?w=150&auto=format&fit=crop&q=60" alt="ÉP CAM"></div>
+                                    <div class="product-name">ÉP CAM</div>
+                                    <div class="product-price">20.000</div>
+                                </div>
+                                <div class="product-card">
+                                    <div class="product-img"><img src="https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=150&auto=format&fit=crop&q=60" alt="ÉP CÀ-RỐT"></div>
+                                    <div class="product-name">ÉP CÀ-RỐT</div>
+                                    <div class="product-price">25.000</div>
+                                    <span class="stock-badge">-80</span>
+                                </div>
+                                <div class="product-card">
+                                    <div class="product-img"><img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=150&auto=format&fit=crop&q=60" alt="ÉP DƯA HẤU"></div>
+                                    <div class="product-name">ÉP DƯA HẤU</div>
+                                    <div class="product-price">25.000</div>
+                                    <span class="stock-badge">-84</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Sidebar: Cart Panel -->
+                        <div class="pos-cart">
+                            <!-- Cart Header Buttons -->
+                            <div class="cart-header-buttons">
+                                <button class="cart-btn customer">KHÁCH LẺ</button>
+                                <button class="cart-btn price-list">GIÁ NIÊM YẾT</button>
+                                <button class="cart-btn table-num">BÀN 3</button>
+                            </div>
+
+                            <!-- Cart Items -->
+                            <div class="cart-items-list">
+                                <div class="cart-item-box">
+                                    <div class="item-header">
+                                        <span class="item-title">ÉP DƯA LƯỚI</span>
+                                        <i class="fa-solid fa-xmark remove-item"></i>
+                                    </div>
+                                    <div class="item-notes">📝 ít đá</div>
+                                    <div class="item-details">
+                                        <span class="unit-price">15.000 đ / Cái</span>
+                                        <div class="qty-selector">
+                                            <span class="qty-btn">-</span>
+                                            <span class="qty-val">1</span>
+                                            <span class="qty-btn">+</span>
+                                        </div>
+                                        <span class="item-total">25.000 đ</span>
+                                    </div>
+                                    <div class="item-subtoppings">
+                                        <div>+ Trân châu trắng</div>
+                                        <div>+ Trân châu đen</div>
+                                    </div>
+                                </div>
+
+                                <div class="cart-item-box">
+                                    <div class="item-header">
+                                        <span class="item-title">NƯỚC ÉP SƠ-RI</span>
+                                        <i class="fa-solid fa-xmark remove-item"></i>
+                                    </div>
+                                    <div class="item-details">
+                                        <span class="unit-price">35.000 đ / Cái</span>
+                                        <div class="qty-selector">
+                                            <span class="qty-btn">-</span>
+                                            <span class="qty-val">1</span>
+                                            <span class="qty-btn">+</span>
+                                        </div>
+                                        <span class="item-total">35.000 đ</span>
+                                    </div>
+                                </div>
+
+                                <div class="cart-item-box">
+                                    <div class="item-header">
+                                        <span class="item-title">PHIN ĐEN ĐÁ</span>
+                                        <i class="fa-solid fa-xmark remove-item"></i>
+                                    </div>
+                                    <div class="item-notes">📝 ít đá</div>
+                                    <div class="item-details">
+                                        <span class="unit-price">12.000 đ / Cái</span>
+                                        <div class="qty-selector">
+                                            <span class="qty-btn">-</span>
+                                            <span class="qty-val">2</span>
+                                            <span class="qty-btn">+</span>
+                                        </div>
+                                        <span class="item-total">34.000 đ</span>
+                                    </div>
+                                    <div class="item-subtoppings">
+                                        <div>+ Trân châu đen</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cart Summary -->
+                            <div class="cart-summary">
+                                <div class="note-input">
+                                    <i class="fa-solid fa-pen note-icon"></i>
+                                    <input type="text" placeholder="Thêm ghi chú đơn hàng..." disabled>
+                                </div>
+                                <div class="total-row">
+                                    <span>Tổng thành tiền (4)</span>
+                                    <span class="total-price-red">94.000 đ</span>
+                                </div>
+                                <div class="action-buttons">
+                                    <button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+                                    <button class="save-btn">LƯU</button>
+                                    <button class="pay-btn">THANH TOÁN</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Hệ Thống Tính Năng Toàn Diện</h2>
+                <p class="section-subtitle">CANPOS cung cấp đầy đủ các tính năng chuyên sâu từ bán hàng, quản lý tồn kho, đơn hàng, doanh thu đến xuất hóa đơn điện tử và chấm công tính lương.</p>
+                
+                <!-- Features Tabs -->
+                <div class="features-tabs">
+                    <button class="tab-btn active" data-tab="pos-orders"><i class="fa-solid fa-cash-register"></i> Bán Hàng & Order</button>
+                    <button class="tab-btn" data-tab="inventory-recipes"><i class="fa-solid fa-boxes-stacked"></i> Kho & Định Lượng</button>
+                    <button class="tab-btn" data-tab="crm-hr"><i class="fa-solid fa-users-gear"></i> Khách Hàng & Nhân Sự</button>
+                    <button class="tab-btn" data-tab="reports-infra"><i class="fa-solid fa-chart-line"></i> Báo Cáo & Kết Nối</button>
+                </div>
+            </div>
+            
+            <!-- Tab Contents -->
+            <div class="tab-container">
+                
+                <!-- Tab 1: Bán Hàng & Order -->
+                <div class="tab-content active" id="pos-orders">
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon purple"><i class="fa-solid fa-table-cells"></i></div>
+                            <h3 class="feature-title">Giao Diện Bán Lẻ & Ăn Uống & Chấm Công Riêng Biệt</h3>
+                            <p class="feature-desc">Thiết kế giao diện tối ưu hóa cho từng mô hình kinh doanh và nghiệp vụ chấm công giúp nhân viên thao tác nhanh chóng, giảm thiểu nhầm lẫn, dễ dàng làm quen ngay ngày đầu tiên.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon indigo"><i class="fa-solid fa-barcode"></i></div>
+                            <h3 class="feature-title">Bán Hàng Nhanh - Quét Mã Tính Tiền</h3>
+                            <p class="feature-desc">Hỗ trợ quét mã vạch sản phẩm, tự động tính tiền, áp dụng chiết khấu nhanh và chính xác, tăng năng suất phục vụ khách hàng giờ cao điểm.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon pink"><i class="fa-solid fa-qrcode"></i></div>
+                            <h3 class="feature-title">QR Thanh Toán Ngân Hàng Tự Động</h3>
+                            <p class="feature-desc">Tự động tạo mã QR chuyển khoản kèm số tiền của hóa đơn. Kết nối trực tiếp loa thông báo giao dịch chuyển khoản thành công, tự động đối soát chính xác.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon cyan"><i class="fa-solid fa-chair"></i></div>
+                            <h3 class="feature-title">Quản Lý Phòng Bàn & Khu Vực</h3>
+                            <p class="feature-desc">Theo dõi sơ đồ bàn theo thời gian thực (trống, đang dùng, đặt trước), hỗ trợ thao tác chuyển bàn, gộp bàn và chia sẻ khu vực nhanh gọn.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon blue"><i class="fa-solid fa-calendar-check"></i></div>
+                            <h3 class="feature-title">Quản Lý Đặt Bàn & Lịch Hẹn (Booking)</h3>
+                            <p class="feature-desc">Lưu trữ và theo dõi thông tin khách đặt bàn hoặc đặt lịch dịch vụ trước, giúp quản lý tối ưu công suất phục vụ của cửa hàng, tránh trùng lặp.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon teal"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                            <h3 class="feature-title">Gọi Món Thông Minh Qua Mã QR Tại Bàn</h3>
+                            <p class="feature-desc">Khách hàng tự quét mã QR tại bàn để xem thực đơn và đặt món. Yêu cầu gọi món tự động đồng bộ về hệ thống thu ngân và bếp để xử lý.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon purple"><i class="fa-solid fa-circle-info"></i></div>
+                            <h3 class="feature-title">Topping & Ghi Chú Nhanh Riêng Biệt</h3>
+                            <p class="feature-desc">Thiết lập linh hoạt danh sách topping, thuộc tính món ăn (ít ngọt, không đá...) và ghi chú nhanh cho từng món để nhân viên thao tác gọi món chính xác.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon indigo"><i class="fa-solid fa-receipt"></i></div>
+                            <h3 class="feature-title">Quản Lý Đơn Hàng Linh Hoạt</h3>
+                            <p class="feature-desc">Tra cứu lịch sử đơn hàng dễ dàng, hỗ trợ chỉnh sửa đơn, duyệt hủy món/hủy hóa đơn có phân quyền và in lại hóa đơn nhanh chóng khi khách hàng yêu cầu.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon purple"><i class="fa-solid fa-file-signature"></i></div>
+                            <h3 class="feature-title">Kết Nối Hóa Đơn Điện Tử Trực Tiếp</h3>
+                            <p class="feature-desc">Tích hợp sâu với các nhà cung cấp hóa đơn điện tử lớn (VIETTEL, VNPT, MISA, ICORP, VIETINVOICE...). Xuất hóa đơn nhanh chóng trực tiếp từ đơn hàng.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tab 2: Kho & Định Lượng -->
+                <div class="tab-content" id="inventory-recipes">
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon purple"><i class="fa-solid fa-warehouse"></i></div>
+                            <h3 class="feature-title">Quản Lý Kho Hàng Chuyên Nghiệp</h3>
+                            <p class="feature-desc">Kiểm soát chặt chẽ danh mục sản phẩm, đơn vị tính quy đổi (thùng, lon, bao...). Cảnh báo tồn kho thấp và đặc biệt tích hợp **Chặn bán khi hết tồn kho** để tránh sai lệch.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon indigo"><i class="fa-solid fa-file-invoice"></i></div>
+                            <h3 class="feature-title">Nhập Hàng & Quản Lý Đơn Nhập</h3>
+                            <p class="feature-desc">Ghi nhận thông tin đơn nhập hàng, số lượng thực tế, giá vốn, theo dõi công nợ nhà cung cấp và lịch sử thanh toán tiền hàng chi tiết.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon pink"><i class="fa-solid fa-print"></i></div>
+                            <h3 class="feature-title">Tạo & In Tem Mã Vạch Sản Phẩm</h3>
+                            <p class="feature-desc">Tự động phát sinh mã vạch (Barcode) cho sản phẩm mới. Hỗ trợ in tem nhãn mã vạch thông thường và **in tem vàng bạc trang sức chuyên dụng** dán trực tiếp lên sản phẩm nhanh chóng từ kho.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon cyan"><i class="fa-solid fa-mortar-pestle"></i></div>
+                            <h3 class="feature-title">Quản Lý Nguyên Liệu Định Lượng</h3>
+                            <p class="feature-desc">Xây dựng công thức định lượng chi tiết cho từng sản phẩm bán ra. Khi phát sinh đơn hàng, hệ thống tự động quy đổi và trừ tồn kho nguyên liệu tương ứng.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon blue"><i class="fa-solid fa-truck-field"></i></div>
+                            <h3 class="feature-title">Quản Lý Nhà Cung Cấp</h3>
+                            <p class="feature-desc">Lưu trữ hồ sơ nhà cung cấp, thống kê công nợ mua hàng tích lũy, lịch sử nhập hàng và các khoản chi trả nợ của cửa hàng.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tab 3: Khách Hàng & Nhân Sự -->
+                <div class="tab-content" id="crm-hr">
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon purple"><i class="fa-solid fa-address-book"></i></div>
+                            <h3 class="feature-title">Quản Lý Khách Hàng Toàn Diện</h3>
+                            <p class="feature-desc">Thống kê chi tiết lịch sử mua hàng, tổng số tiền giao dịch, điểm tích lũy thưởng, quản lý công nợ khách hàng và thu nợ khách hàng nhanh chóng.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon indigo"><i class="fa-solid fa-spa"></i></div>
+                            <h3 class="feature-title">Quản Lý Liệu Trình (Spa, Nail, Nha Khoa...)</h3>
+                            <p class="feature-desc">Thiết kế quản lý các gói liệu trình nhiều buổi. Ghi nhận chi tiết từng buổi khách hàng thực hiện, lưu lịch sử nhân viên thực hiện liệu trình.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon pink"><i class="fa-solid fa-dumbbell"></i></div>
+                            <h3 class="feature-title">Quản Lý Thẻ Tập (Gym, Fitness, Pickleball...)</h3>
+                            <p class="feature-desc">Quản lý các gói thẻ thành viên, thẻ tập định kỳ theo tháng/năm, lượt tập cho các ngành Fitness, Pickleball, Yoga, hỗ trợ check-in thẻ nhanh.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon teal"><i class="fa-solid fa-business-time"></i></div>
+                            <h3 class="feature-title">Chấm Công & Tính Lương Tự Động</h3>
+                            <p class="feature-desc">Đồng bộ trực tiếp dữ liệu từ máy chấm công vân tay/khuôn mặt ZKTeco. Tự động tính ca làm, tiền tăng ca, lương cứng, phụ cấp và các khoản hoa hồng doanh số.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon cyan"><i class="fa-solid fa-user-lock"></i></div>
+                            <h3 class="feature-title">Phân Quyền Nhân Viên Thông Minh</h3>
+                            <p class="feature-desc">Tạo tài khoản nhân viên không giới hạn, phân quyền chi tiết từng chức năng (thu ngân, xem báo cáo doanh thu ca làm, duyệt hủy món, quản trị viên).</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon blue"><i class="fa-solid fa-gift"></i></div>
+                            <h3 class="feature-title">Chương Trình Khuyến Mãi & Tích Điểm</h3>
+                            <p class="feature-desc">Cấu hình tự động các chương trình chiết khấu đơn hàng, tích điểm thưởng đổi quà, thiết lập phụ thu, bảng giá riêng và gói combo sản phẩm.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tab 4: Báo Cáo & Kết Nối -->
+                <div class="tab-content" id="reports-infra">
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon purple"><i class="fa-solid fa-chart-pie"></i></div>
+                            <h3 class="feature-title">Hệ Thống Báo Cáo Chi Tiết 360°</h3>
+                            <p class="feature-desc">Bộ báo cáo toàn diện bao gồm: Doanh thu lãi lỗ, Báo cáo Thu-Chi, Xuất-Nhập-Tồn kho, Báo cáo hao hụt định lượng, Doanh số đa chi nhánh.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon indigo"><i class="fa-solid fa-users-viewfinder"></i></div>
+                            <h3 class="feature-title">Báo Cáo Chi Tiết Ca Nhân Viên</h3>
+                            <p class="feature-desc">Chủ cửa hàng theo dõi doanh thu tổng hợp hoặc lọc chi tiết theo từng nhân viên. Phân quyền nhân viên chỉ được phép xem báo cáo ca làm của chính mình.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon pink"><i class="fa-solid fa-percentage"></i></div>
+                            <h3 class="feature-title">Báo Cáo Hoa Hồng Nhân Viên Chi Tiết</h3>
+                            <p class="feature-desc">Thống kê chi tiết hoa hồng doanh số bán hàng, hoa hồng thực hiện dịch vụ cho nhân viên theo từng hóa đơn, giúp tính lương thưởng minh bạch.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon cyan"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                            <h3 class="feature-title">In Ấn bếp & Hóa Đơn Qua Cloud Server</h3>
+                            <p class="feature-desc">Hỗ trợ in bếp, in tem nhãn và hóa đơn thanh toán trực tiếp từ điện thoại hoặc máy POS thông qua dịch vụ Cloud Server tốc độ cao và ổn định.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon blue"><i class="fa-solid fa-plug"></i></div>
+                            <h3 class="feature-title">Kết Nối Đa Dạng Thiết Bị Ngoại Vi</h3>
+                            <p class="feature-desc">Khả năng tương thích cực cao với các dòng máy in nhiệt USB, cổng LAN, Wifi, máy in cầm tay Sunmi, Bluetooth và các thiết bị quét mã vạch.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon teal"><i class="fa-solid fa-wifi"></i></div>
+                            <h3 class="feature-title">Hoạt Động Trơn Tru Online & Offline</h3>
+                            <p class="feature-desc">Dữ liệu đồng bộ đám mây thời gian thực. Khi gặp sự cố mất mạng internet, phần mềm vẫn cho phép bán hàng và thanh toán, tự đồng bộ khi có kết nối trở lại.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon indigo"><i class="fa-solid fa-receipt"></i></div>
+                            <h3 class="feature-title">Báo Cáo Thuế GTGT Tự Động</h3>
+                            <p class="feature-desc">Hệ thống tự động tổng hợp doanh thu và thuế GTGT đầu ra theo thời gian thực dựa trên hóa đơn bán lẻ, hỗ trợ kê khai và đối soát thuế dễ dàng.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon pink"><i class="fa-solid fa-scale-balanced"></i></div>
+                            <h3 class="feature-title">Quản Lý Thu - Chi (Quỹ Tiền Mặt & Ngân Hàng)</h3>
+                            <p class="feature-desc">Kiểm soát chi tiết các khoản thu và chi của cửa hàng (thu gì, chi những gì, thu từ ai...). Quản lý số dư két tiền mặt, tài khoản ngân hàng chính xác.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon cyan"><i class="fa-solid fa-chart-column"></i></div>
+                            <h3 class="feature-title">Báo Cáo Nhập Xuất Tồn & Hao Hụt Định Lượng</h3>
+                            <p class="feature-desc">Thống kê chi tiết lượng hàng hóa và nguyên liệu xuất nhập tồn kho. Báo cáo sai lệch hao hụt định lượng thực tế theo từng sản phẩm hoặc nguyên liệu.</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Downloads Section -->
+    <section id="downloads" class="downloads-section section-padding">
+        <div class="downloads-glow"></div>
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Tải Ứng Dụng Cho Các Thiết Bị</h2>
+                <p class="section-subtitle">Tải ngay ứng dụng CANPOS trên các hệ điều hành để trải nghiệm hiệu suất bán hàng tối ưu.</p>
+            </div>
+            
+            <div class="download-grid">
+                <!-- Windows Client -->
+                <div class="download-card">
+                    <div class="download-platform"><i class="fa-brands fa-windows"></i></div>
+                    <h3>Sử Dụng Trên Windows</h3>
+                    <p class="download-desc">Sử dụng trực tiếp phiên bản ứng dụng Web đầy đủ tính năng dành cho máy tính chạy hệ điều hành Windows 7/10/11.</p>
+                    <a href="https://app.canpos.vn" target="_blank" class="btn btn-primary btn-full" style="margin-bottom: 12px;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Dùng trực tiếp trên Web</a>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/canpos-7862b.firebasestorage.app/o/downloads%2FCANPOS.VN.TOOL.exe?alt=media&token=d9c458c5-646f-4ecd-b01d-32800bb533ab" class="btn btn-secondary btn-full"><i class="fa-solid fa-screwdriver-wrench"></i> Tải Tool Canpos.vn.tool</a>
+                    <div class="download-meta">Địa chỉ: app.canpos.vn | Hỗ trợ kết nối phần cứng</div>
+                </div>
+
+                <!-- Android Client -->
+                <div class="download-card">
+                    <div class="download-platform"><i class="fa-brands fa-android"></i></div>
+                    <h3>Ứng Dụng Android</h3>
+                    <p class="download-desc">Dành cho điện thoại di động, máy tính bảng và các thiết bị POS để bàn, POS cầm tay chuyên dụng như Sunmi...</p>
+                    <a href="https://play.google.com/store/apps/details?id=vn.canpos.app" target="_blank" class="btn btn-primary btn-full" style="margin-bottom: 12px;"><i class="fa-brands fa-google-play"></i> Tải từ Google Play</a>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/canpos-7862b.firebasestorage.app/o/downloads%2Fcanpos.apk?alt=media&token=eda0c0da-c11f-446d-837c-896c1a1567eb" class="btn btn-secondary btn-full"><i class="fa-solid fa-download"></i> Tải file APK trực tiếp</a>
+                    <div class="download-meta">Phiên bản: 1.2.6 | Hỗ trợ: Android 7.0+</div>
+                </div>
+
+                <!-- iOS Client -->
+                <div class="download-card">
+                    <div class="download-platform"><i class="fa-brands fa-apple"></i></div>
+                    <h3>Ứng Dụng iOS / iPadOS</h3>
+                    <p class="download-desc">Trải nghiệm bán hàng mượt mà, trực quan trên các thiết bị iPhone và iPad của Apple.</p>
+                    <a href="https://apps.apple.com/us/app/canpos/id6772982101" target="_blank" class="btn btn-primary btn-full" style="margin-bottom: 12px;"><i class="fa-brands fa-app-store"></i> Tải từ App Store</a>
+                    <a href="https://app.canpos.vn" target="_blank" class="btn btn-secondary btn-full"><i class="fa-solid fa-arrow-up-right-from-square"></i> Dùng trực tiếp trên Web</a>
+                    <div class="download-meta">Hỗ trợ: iOS / iPadOS 13.0+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section section-padding">
+        <div class="container">
+            <!-- Title 1: POS software -->
+            <div class="section-header text-center">
+                <h2 class="section-title">BẢNG GIÁ PHẦN MỀM QUẢN LÝ BÁN HÀNG</h2>
+                <p class="section-subtitle">Chi phí minh bạch, không phí ẩn. Chọn gói dịch vụ phù hợp nhất với mô hình của bạn.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <!-- Package 1: 1 Year -->
+                <div class="pricing-card">
+                    <div class="pricing-header" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">
+                        <h3 class="plan-name">Gói 1 Năm</h3>
+                        <p class="plan-desc" style="min-height: 48px; margin-bottom: 20px;">Phù hợp cho cửa hàng trải nghiệm dịch vụ bán hàng ổn định.</p>
+                        <div class="plan-price">
+                            <span class="price-value">1.650.000đ</span>
+                            <span class="price-period">/năm</span>
+                        </div>
+                    </div>
+                    <div class="pricing-action" style="margin-top: auto; padding-top: 24px;">
+                        <a href="#contact" class="btn btn-secondary btn-full">Đăng Ký Ngay</a>
+                    </div>
+                </div>
+                
+                <!-- Package 2: 2 Years (Popular) -->
+                <div class="pricing-card popular">
+                    <div class="pricing-card-badge purple">KHUYÊN DÙNG - TẶNG 6 THÁNG</div>
+                    <div class="pricing-header" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">
+                        <h3 class="plan-name">Gói 2 Năm</h3>
+                        <p class="plan-desc" style="min-height: 48px; margin-bottom: 20px;">Tặng thêm 6 tháng sử dụng. Tối ưu chi phí vận hành lâu dài cho cửa hàng.</p>
+                        <div class="plan-price">
+                            <span class="price-value">3.300.000đ</span>
+                            <span class="price-period">/30 tháng</span>
+                        </div>
+                    </div>
+                    <div class="pricing-action" style="margin-top: auto; padding-top: 24px;">
+                        <a href="#contact" class="btn btn-primary btn-full">Đăng Ký Nhận Ưu Đãi</a>
+                    </div>
+                </div>
+                
+                <!-- Package 3: 3 Years -->
+                <div class="pricing-card">
+                    <div class="pricing-card-badge blue">TẶNG 24 THÁNG</div>
+                    <div class="pricing-header" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">
+                        <h3 class="plan-name">Gói 3 Năm</h3>
+                        <p class="plan-desc" style="min-height: 48px; margin-bottom: 20px;">Tặng thêm 24 tháng sử dụng. Giải pháp bền vững cho chuỗi kinh doanh.</p>
+                        <div class="plan-price">
+                            <span class="price-value">4.950.000đ</span>
+                            <span class="price-period">/60 tháng</span>
+                        </div>
+                    </div>
+                    <div class="pricing-action" style="margin-top: auto; padding-top: 24px;">
+                        <a href="#contact" class="btn btn-secondary btn-full">Đăng Ký Ngay</a>
+                    </div>
+                </div>
+                
+                <!-- Package 4: Lifetime -->
+                <div class="pricing-card lifetime">
+                    <div class="pricing-card-badge green">TIẾT KIỆM NHẤT</div>
+                    <div class="pricing-header" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">
+                        <h3 class="plan-name" style="color: #4caf50;">Gói Trọn Đời</h3>
+                        <p class="plan-desc" style="min-height: 48px; margin-bottom: 20px;">Sử dụng vĩnh viễn không giới hạn thời gian, miễn phí nâng cấp trọn đời.</p>
+                        <div class="plan-price">
+                            <span class="price-value" style="color: #4caf50;">6.600.000đ</span>
+                            <span class="price-period">/vĩnh viễn</span>
+                        </div>
+                    </div>
+                    <div class="pricing-action" style="margin-top: auto; padding-top: 24px;">
+                        <a href="#contact" class="btn btn-secondary btn-full" style="border-color: rgba(76, 175, 80, 0.4); color: #4caf50;">Đăng Ký Sở Hữu</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Title 2: Timekeeping and payroll software -->
+            <div class="section-header text-center" style="margin-top: 70px; margin-bottom: 30px;">
+                <h2 class="section-title" style="font-size: 1.8rem; background: linear-gradient(135deg, var(--secondary-color), #0077b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">BẢNG GIÁ PHẦN MỀM CHẤM CÔNG & TÍNH LƯƠNG</h2>
+                <p class="section-subtitle">Giải pháp quản lý nhân sự, chấm công tự động và tính lương chuyên sâu độc lập.</p>
+            </div>
+
+            <!-- Standalone Module Row -->
+            <div class="addon-pricing-container" style="margin-top: 0; display: flex; justify-content: center;">
+                <div class="pricing-card" style="width: 100%; max-width: 360px; border-color: rgba(76, 201, 240, 0.35);">
+                    <div class="pricing-card-badge blue" style="background: linear-gradient(135deg, var(--secondary-color), #0077b6); box-shadow: 0 4px 15px rgba(76, 201, 240, 0.35);">MÔ-ĐUN RIÊNG BIỆT</div>
+                    <div class="pricing-header" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">
+                        <h3 class="plan-name" style="color: var(--secondary-color);">Chấm Công & Tính Lương</h3>
+                        <p class="plan-desc" style="min-height: 48px; margin-bottom: 20px;">Nghiệp vụ chấm công tự động & tính lương chuyên sâu riêng biệt.</p>
+                        <div class="plan-price">
+                            <span class="price-value" style="color: var(--secondary-color);">990.000đ</span>
+                            <span class="price-period">/năm</span>
+                        </div>
+                    </div>
+                    <div class="pricing-action" style="margin-top: auto; padding-top: 24px;">
+                        <a href="#contact" class="btn btn-secondary btn-full" style="border-color: rgba(76, 201, 240, 0.4); color: var(--secondary-color);">Đăng Ký Ngay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Guide Section -->
+    <section class="video-section section-padding" id="guide">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Video Hướng Dẫn Sử Dụng</h2>
+                <p class="section-subtitle">Xem ngay video hướng dẫn trực quan để làm quen với giao diện và học cách tối ưu vận hành cửa hàng cùng CANPOS chỉ trong 5 phút.</p>
+            </div>
+            
+            <div class="video-wrapper">
+                <a href="https://youtube.com/playlist?list=PLffbc--H7uTE&si=6KR2ObJ5cLsXCUZq" target="_blank" class="video-placeholder-card">
+                    <div class="play-btn-circle">
+                        <i class="fa-solid fa-play" style="margin-left: 5px;"></i>
+                    </div>
+                    <div class="video-placeholder-text">Xem Playlist Hướng Dẫn Trên YouTube</div>
+                    <div class="video-placeholder-subtext">Xem trọn bộ video hướng dẫn setup thiết bị và sử dụng phần mềm CANPOS thực tế</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Info Section -->
+    <section id="contact" class="contact-section section-padding">
+        <div class="container contact-container">
+            <!-- Left Column: Welcome Text -->
+            <div class="contact-info">
+                <div class="badge" style="margin-bottom: 16px;">Kết Nối Thương Hiệu</div>
+                <h2>Kết Nối Cùng CANPOS</h2>
+                <p>Mọi thắc mắc về giải pháp phần mềm quản lý bán hàng, phân hệ chấm công nhân sự hoặc yêu cầu hỗ trợ kỹ thuật cài đặt thiết bị ngoại vi, xin vui lòng liên hệ trực tiếp với chúng tôi để nhận phản hồi nhanh nhất.</p>
+            </div>
+            
+            <!-- Right Column: Corporate Info Card -->
+            <div class="contact-card-info contact-form-container">
+                <h3 class="form-title" style="margin-bottom: 30px; font-size: 1.35rem; color: #ffffff; text-align: left; border-bottom: 1px solid var(--border-glass); padding-bottom: 16px;"><i class="fa-solid fa-building" style="color: var(--secondary-color); margin-right: 10px;"></i> THÔNG TIN DOANH NGHIỆP</h3>
+                
+                <div class="info-list" style="gap: 20px;">
+                    <!-- Company Name -->
+                    <div class="info-item" style="align-items: flex-start; gap: 16px;">
+                        <span class="info-icon" style="background: rgba(76, 175, 80, 0.1); color: #4caf50; border-color: rgba(76, 175, 80, 0.15); flex-shrink: 0; width: 42px; height: 42px; border-radius: 10px;"><i class="fa-solid fa-industry" style="font-size: 1rem;"></i></span>
+                        <div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 3px; letter-spacing: 0.05em;">Tên đơn vị</div>
+                            <strong style="color: #ffffff; font-size: 1.05rem; line-height: 1.4; font-family: 'Be Vietnam Pro', sans-serif;">CÔNG TY TNHH CÔNG NGHỆ CANPOS</strong>
+                        </div>
+                    </div>
+                    
+                    <!-- Address -->
+                    <div class="info-item" style="align-items: flex-start; gap: 16px;">
+                        <span class="info-icon" style="background: rgba(76, 201, 240, 0.1); color: var(--secondary-color); border-color: rgba(76, 201, 240, 0.15); flex-shrink: 0; width: 42px; height: 42px; border-radius: 10px;"><i class="fa-solid fa-location-dot" style="font-size: 1rem;"></i></span>
+                        <div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 3px; letter-spacing: 0.05em;">Địa chỉ</div>
+                            <span style="color: rgba(255,255,255,0.85); line-height: 1.4; font-size: 0.95rem;">Số 44 Nguyễn Chánh, Phường Nghĩa Lộ, Tỉnh Quảng Ngãi, Việt Nam</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Tax Code -->
+                    <div class="info-item" style="align-items: flex-start; gap: 16px;">
+                        <span class="info-icon" style="background: rgba(247, 37, 133, 0.1); color: var(--accent-color); border-color: rgba(247, 37, 133, 0.15); flex-shrink: 0; width: 42px; height: 42px; border-radius: 10px;"><i class="fa-solid fa-file-invoice" style="font-size: 1rem;"></i></span>
+                        <div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 3px; letter-spacing: 0.05em;">Mã số thuế</div>
+                            <span style="color: rgba(255,255,255,0.85); line-height: 1.4; font-size: 0.95rem;">4300900023</span>
+                        </div>
+                    </div>
+                    
+
+                    
+                    <!-- Phone -->
+                    <div class="info-item" style="align-items: flex-start; gap: 16px;">
+                        <span class="info-icon" style="background: rgba(46, 204, 113, 0.1); color: #2ecc71; border-color: rgba(46, 204, 113, 0.15); flex-shrink: 0; width: 42px; height: 42px; border-radius: 10px;"><i class="fa-solid fa-phone" style="font-size: 1rem;"></i></span>
+                        <div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 3px; letter-spacing: 0.05em;">Điện thoại</div>
+                            <a href="tel:0336702196" style="color: #2ecc71; font-weight: 700; font-size: 1.1rem; text-decoration: none; display: flex; align-items: center; gap: 8px;">033.670.2196 <span style="font-size: 0.65rem; font-weight: 400; background: rgba(46, 204, 113, 0.15); padding: 2px 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.05em;">Gọi ngay</span></a>
+                        </div>
+                    </div>
+
+                    <!-- Zalo -->
+                    <div class="info-item" style="align-items: flex-start; gap: 16px;">
+                        <span class="info-icon" style="background: rgba(0, 104, 255, 0.1); color: #0068ff; border-color: rgba(0, 104, 255, 0.15); flex-shrink: 0; width: 42px; height: 42px; border-radius: 10px;"><i class="fa-solid fa-comment-dots" style="font-size: 1rem;"></i></span>
+                        <div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 3px; letter-spacing: 0.05em;">Zalo</div>
+                            <a href="https://zalo.me/0336702196" target="_blank" style="color: #0068ff; font-weight: 700; font-size: 1.1rem; text-decoration: none; display: flex; align-items: center; gap: 8px;">033.670.2196 <span style="font-size: 0.65rem; font-weight: 400; background: rgba(0, 104, 255, 0.15); padding: 2px 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.05em;">Chat Ngay</span></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div class="info-item" style="align-items: flex-start; gap: 16px;">
+                        <span class="info-icon" style="background: rgba(114, 9, 183, 0.1); color: var(--primary-light); border-color: rgba(114, 9, 183, 0.15); flex-shrink: 0; width: 42px; height: 42px; border-radius: 10px;"><i class="fa-solid fa-envelope" style="font-size: 1rem;"></i></span>
+                        <div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 3px; letter-spacing: 0.05em;">Mail</div>
+                            <a href="mailto:canpos.vn@gmail.com" style="color: var(--primary-light); text-decoration: none; line-height: 1.4; font-size: 0.95rem;">canpos.vn@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <img src="assets/logo.png" alt="CANPOS Logo" class="logo-img">
+                    CAN<span class="logo-accent">POS</span>
+                </a>
+                <p class="footer-desc">Phần mềm quản lý bán hàng chuyên nghiệp, tin cậy và đột phá. Nâng tầm kinh doanh của bạn.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/canposmaytinhtien/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.youtube.com/@canposmaytinhtien76" target="_blank" aria-label="Youtube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://zalo.me/0336702196" target="_blank" aria-label="Zalo"><i class="fa-solid fa-comment-dots"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links-group">
+                <h4>Sản Phẩm</h4>
+                <ul>
+                    <li><a href="#features">Tính năng chính</a></li>
+                    <li><a href="#downloads">Tải ứng dụng</a></li>
+                    <li><a href="#pricing">Bảng giá niêm yết</a></li>
+                    <li><a href="#guide">Video hướng dẫn</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links-group">
+                <h4>Hỗ Trợ</h4>
+                <ul>
+                    <li><a href="#guide">Tài liệu hướng dẫn</a></li>
+                    <li><a href="#privacy">Chính sách bảo mật</a></li>
+                    <li><a href="#terms">Điều khoản sử dụng</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; 2026 CÔNG TY TNHH CÔNG NGHỆ CANPOS.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts & Interactive Logic (Inline to bypass browser file:// protocol security) -->
+    <script>
+        (function() {
+            function initInteractive() {
+                console.log("CANPOS Landing Page interactive logic loaded!");
+                
+                // 1. Pricing Toggle Logic (Removed since plans are fixed duration)
+
+                // 2. Features Tab Switcher Logic
+                const tabBtns = document.querySelectorAll('.tab-btn');
+                const tabContents = document.querySelectorAll('.tab-content');
+
+                tabBtns.forEach(btn => {
+                    btn.onclick = function() {
+                        const targetTab = btn.getAttribute('data-tab');
+                        
+                        // Toggle active state for tab buttons
+                        tabBtns.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        
+                        // Toggle active state for tab contents
+                        tabContents.forEach(content => {
+                            content.classList.remove('active');
+                            if (content.getAttribute('id') === targetTab) {
+                                content.classList.add('active');
+                            }
+                        });
+                    };
+                });
+
+                // 3. Mobile Menu Toggle
+                const mobileToggle = document.querySelector('.mobile-nav-toggle');
+                const navMenu = document.querySelector('.nav-menu');
+                
+                if (mobileToggle && navMenu) {
+                    mobileToggle.onclick = function() {
+                        navMenu.classList.toggle('active');
+                        const icon = mobileToggle.querySelector('i');
+                        if (icon) {
+                            if (navMenu.classList.contains('active')) {
+                                icon.classList.remove('fa-bars');
+                                icon.classList.add('fa-xmark');
+                            } else {
+                                icon.classList.remove('fa-xmark');
+                                icon.classList.add('fa-bars');
+                            }
+                        }
+                    };
+
+                    const navLinks = document.querySelectorAll('.nav-link');
+                    navLinks.forEach(link => {
+                        link.onclick = function() {
+                            navMenu.classList.remove('active');
+                            const icon = mobileToggle.querySelector('i');
+                            if (icon) {
+                                icon.classList.remove('fa-xmark');
+                                icon.classList.add('fa-bars');
+                            }
+                        };
+                    });
+                }
+
+                // 4. Contact Form Submission (Removed since form is replaced by corporate info)
+            }
+
+            // Run immediately or on load
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initInteractive);
+            } else {
+                initInteractive();
+            }
+        })();
+    </script>
+
+    <!-- Floating Contact Buttons -->
+    <div class="floating-contact">
+        <!-- Zalo Button -->
+        <a href="https://zalo.me/0336702196" target="_blank" class="floating-btn zalo-btn" aria-label="Chat Zalo">
+            <i class="fa-solid fa-comment-dots"></i>
+            <span class="btn-label">Chat Zalo</span>
+        </a>
+        <!-- Phone Button -->
+        <a href="tel:0336702196" class="floating-btn phone-btn" aria-label="Gọi điện">
+            <i class="fa-solid fa-phone"></i>
+            <span class="btn-label">Gọi điện ngay</span>
+        </a>
+    </div>
+</body>
+</html>

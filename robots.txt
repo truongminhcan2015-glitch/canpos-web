@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://canpos.com.vn/sitemap.xml

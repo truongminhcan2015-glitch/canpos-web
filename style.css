@@ -1607,79 +1607,168 @@ select.form-control option {
 }
 
 /* Video Section styling */
-.video-wrapper {
-    max-width: 800px;
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
 .video-placeholder-card {
     position: relative;
     width: 100%;
+    min-height: 310px;
     aspect-ratio: 16 / 9;
-    background: linear-gradient(135deg, rgba(58, 12, 163, 0.4), rgba(247, 37, 133, 0.25)), radial-gradient(circle, #31165a 0%, #130722 100%);
+    background: #1a0b2e;
     border: 1px solid var(--border-glass);
     border-radius: 24px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     cursor: pointer;
     box-shadow: var(--shadow-strong), var(--shadow-glow);
     transition: var(--transition-smooth);
     text-decoration: none;
-    padding: 24px;
+    padding: 24px 20px 20px;
+}
+
+.video-thumb-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+    filter: brightness(0.85) contrast(1.05);
+    z-index: 1;
+}
+
+.video-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(19, 7, 34, 0.15) 0%, rgba(19, 7, 34, 0.35) 45%, rgba(19, 7, 34, 0.92) 100%);
+    z-index: 2;
+    transition: var(--transition-smooth);
+}
+
+.video-card-overlay.overlay-timekeeping {
+    background: linear-gradient(180deg, rgba(10, 25, 45, 0.15) 0%, rgba(10, 25, 45, 0.35) 45%, rgba(10, 20, 35, 0.92) 100%);
 }
 
 .video-placeholder-card:hover {
-    transform: translateY(-8px) scale(1.01);
+    transform: translateY(-8px) scale(1.02);
     border-color: var(--border-glass-hover);
     box-shadow: var(--shadow-strong), var(--shadow-glow-accent);
 }
 
+.video-placeholder-card:hover .video-thumb-img {
+    transform: scale(1.06);
+    filter: brightness(0.98) contrast(1.08);
+}
+
+.video-placeholder-card.video-card-timekeeping:hover {
+    box-shadow: var(--shadow-strong), 0 8px 32px 0 rgba(76, 201, 240, 0.35);
+    border-color: rgba(76, 201, 240, 0.4);
+}
+
+.video-badge {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    padding: 6px 14px;
+    background: rgba(19, 7, 34, 0.85);
+    border: 1px solid rgba(247, 37, 133, 0.6);
+    color: #ff70a6;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    z-index: 3;
+    backdrop-filter: blur(8px);
+}
+
+.video-badge-timekeeping {
+    border-color: rgba(76, 201, 240, 0.6);
+    color: var(--secondary-color);
+}
+
 .video-placeholder-card .play-btn-circle {
-    width: 80px;
-    height: 80px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 68px;
+    height: 68px;
     background: var(--gradient-accent);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: #ffffff;
-    box-shadow: 0 0 30px rgba(247, 37, 133, 0.5);
+    box-shadow: 0 0 25px rgba(247, 37, 133, 0.6);
     transition: var(--transition-smooth);
-    margin-bottom: 20px;
+    z-index: 3;
     animation: pulse-glow 2s infinite;
 }
 
+.video-placeholder-card .play-btn-circle.play-btn-timekeeping {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    box-shadow: 0 0 25px rgba(76, 201, 240, 0.6);
+    animation: pulse-glow-cyan 2s infinite;
+}
+
 .video-placeholder-card:hover .play-btn-circle {
-    transform: scale(1.15);
-    box-shadow: 0 0 40px rgba(247, 37, 133, 0.8);
+    transform: translate(-50%, -50%) scale(1.18);
+    box-shadow: 0 0 35px rgba(247, 37, 133, 0.9);
+}
+
+.video-placeholder-card.video-card-timekeeping:hover .play-btn-circle {
+    box-shadow: 0 0 35px rgba(76, 201, 240, 0.9);
+}
+
+.video-info-box {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
 }
 
 .video-placeholder-text {
     font-family: 'Be Vietnam Pro', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: #ffffff;
-    text-align: center;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    text-shadow: 0 2px 12px rgba(0,0,0,0.8);
 }
 
 .video-placeholder-subtext {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin-top: 8px;
-    text-align: center;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: 6px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
     line-height: 1.4;
 }
 
 @keyframes pulse-glow {
     0% { box-shadow: 0 0 0 0 rgba(247, 37, 133, 0.6); }
-    70% { box-shadow: 0 0 0 20px rgba(247, 37, 133, 0); }
+    70% { box-shadow: 0 0 0 16px rgba(247, 37, 133, 0); }
     100% { box-shadow: 0 0 0 0 rgba(247, 37, 133, 0); }
+}
+
+@keyframes pulse-glow-cyan {
+    0% { box-shadow: 0 0 0 0 rgba(76, 201, 240, 0.6); }
+    70% { box-shadow: 0 0 0 16px rgba(76, 201, 240, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(76, 201, 240, 0); }
 }
 
 @media (max-width: 768px) {
@@ -1747,6 +1836,11 @@ select.form-control option {
     
     .testimonials-grid {
         grid-template-columns: 1fr;
+    }
+
+    .video-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 }
 
@@ -1863,22 +1957,22 @@ select.form-control option {
     }
     
     .video-placeholder-card {
-        padding: 16px;
+        min-height: 250px;
+        padding: 16px 14px 16px;
     }
     
     .video-placeholder-card .play-btn-circle {
-        width: 60px;
-        height: 60px;
-        font-size: 1.4rem;
-        margin-bottom: 12px;
+        width: 56px;
+        height: 56px;
+        font-size: 1.25rem;
     }
     
     .video-placeholder-text {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
     }
     
     .video-placeholder-subtext {
-        font-size: 0.85rem;
-        margin-top: 6px;
+        font-size: 0.8rem;
+        margin-top: 4px;
     }
 }

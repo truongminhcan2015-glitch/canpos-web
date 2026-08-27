@@ -1606,19 +1606,116 @@ select.form-control option {
     transform: translateY(0);
 }
 
+/* Auto Printer Tab Hero Banner */
+.printer-hero-banner {
+    background: linear-gradient(135deg, rgba(114, 9, 183, 0.25), rgba(249, 115, 22, 0.15));
+    border: 1.5px solid rgba(249, 115, 22, 0.35);
+    border-radius: 20px;
+    padding: 30px 36px;
+    margin-bottom: 35px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 25px rgba(249, 115, 22, 0.15);
+}
+
+.printer-hero-banner::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.3), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.printer-fire-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #f97316, #ef4444);
+    color: #ffffff;
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+    margin-bottom: 14px;
+}
+
+.printer-banner-title {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    letter-spacing: -0.01em;
+}
+
+.printer-banner-subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.printer-brands-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.brand-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    backdrop-filter: blur(8px);
+    transition: var(--transition-smooth);
+}
+
+.brand-tag:hover {
+    background: rgba(249, 115, 22, 0.2);
+    border-color: #f97316;
+    color: #ffedd5;
+    transform: translateY(-2px);
+}
+
+.brand-tag i {
+    color: #22c55e;
+    font-size: 0.8rem;
+}
+
 /* Video Section styling */
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    max-width: 1100px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1380px;
     margin: 0 auto;
+}
+
+@media (max-width: 1080px) {
+    .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 .video-placeholder-card {
     position: relative;
     width: 100%;
-    min-height: 310px;
+    min-height: 290px;
     aspect-ratio: 16 / 9;
     background: #1a0b2e;
     border: 1px solid var(--border-glass);
@@ -1659,6 +1756,10 @@ select.form-control option {
     background: linear-gradient(180deg, rgba(10, 25, 45, 0.15) 0%, rgba(10, 25, 45, 0.35) 45%, rgba(10, 20, 35, 0.92) 100%);
 }
 
+.video-card-overlay.overlay-printer {
+    background: linear-gradient(180deg, rgba(35, 15, 10, 0.15) 0%, rgba(35, 15, 10, 0.35) 45%, rgba(20, 10, 5, 0.92) 100%);
+}
+
 .video-placeholder-card:hover {
     transform: translateY(-8px) scale(1.02);
     border-color: var(--border-glass-hover);
@@ -1673,6 +1774,11 @@ select.form-control option {
 .video-placeholder-card.video-card-timekeeping:hover {
     box-shadow: var(--shadow-strong), 0 8px 32px 0 rgba(76, 201, 240, 0.35);
     border-color: rgba(76, 201, 240, 0.4);
+}
+
+.video-placeholder-card.video-card-printer:hover {
+    box-shadow: var(--shadow-strong), 0 8px 32px 0 rgba(249, 115, 22, 0.4);
+    border-color: rgba(249, 115, 22, 0.5);
 }
 
 .video-badge {
@@ -1698,6 +1804,11 @@ select.form-control option {
 .video-badge-timekeeping {
     border-color: rgba(76, 201, 240, 0.6);
     color: var(--secondary-color);
+}
+
+.video-badge-printer {
+    border-color: rgba(249, 115, 22, 0.6);
+    color: #f97316;
 }
 
 .video-placeholder-card .play-btn-circle {
@@ -1726,6 +1837,12 @@ select.form-control option {
     animation: pulse-glow-cyan 2s infinite;
 }
 
+.video-placeholder-card .play-btn-circle.play-btn-printer {
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    box-shadow: 0 0 25px rgba(249, 115, 22, 0.6);
+    animation: pulse-glow-amber 2s infinite;
+}
+
 .video-placeholder-card:hover .play-btn-circle {
     transform: translate(-50%, -50%) scale(1.18);
     box-shadow: 0 0 35px rgba(247, 37, 133, 0.9);
@@ -1733,6 +1850,10 @@ select.form-control option {
 
 .video-placeholder-card.video-card-timekeeping:hover .play-btn-circle {
     box-shadow: 0 0 35px rgba(76, 201, 240, 0.9);
+}
+
+.video-placeholder-card.video-card-printer:hover .play-btn-circle {
+    box-shadow: 0 0 35px rgba(249, 115, 22, 0.9);
 }
 
 .video-info-box {
@@ -1769,6 +1890,12 @@ select.form-control option {
     0% { box-shadow: 0 0 0 0 rgba(76, 201, 240, 0.6); }
     70% { box-shadow: 0 0 0 16px rgba(76, 201, 240, 0); }
     100% { box-shadow: 0 0 0 0 rgba(76, 201, 240, 0); }
+}
+
+@keyframes pulse-glow-amber {
+    0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.6); }
+    70% { box-shadow: 0 0 0 16px rgba(249, 115, 22, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
 }
 
 @media (max-width: 768px) {
@@ -1974,5 +2101,17 @@ select.form-control option {
     .video-placeholder-subtext {
         font-size: 0.8rem;
         margin-top: 4px;
+    }
+
+    .printer-hero-banner {
+        padding: 20px 16px;
+    }
+
+    .printer-banner-title {
+        font-size: 1.15rem;
+    }
+
+    .printer-banner-subtitle {
+        font-size: 0.9rem;
     }
 }

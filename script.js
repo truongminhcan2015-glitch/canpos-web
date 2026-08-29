@@ -1,3 +1,21 @@
+// Function to switch phone image on right device
+function switchRightPhone(src, btn) {
+    const img = document.getElementById('right-phone-img');
+    if (img) {
+        img.style.opacity = '0';
+        setTimeout(() => {
+            img.src = src;
+            img.style.opacity = '1';
+        }, 150);
+    }
+    if (btn && btn.parentElement) {
+        const btns = btn.parentElement.querySelectorAll('.phone-pill-btn');
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    }
+}
+window.switchRightPhone = switchRightPhone;
+
 function initCANPOS() {
     // 1. Pricing Toggle Logic
     const pricingToggleBtn = document.getElementById('pricing-toggle-btn');
@@ -49,6 +67,25 @@ function initCANPOS() {
         billingYearly.addEventListener('click', () => togglePricing(true));
     }
 
+
+    // 0. Hero Mockup View Switcher (POS, Mobile, Report)
+    const mockupBtns = document.querySelectorAll('.mockup-tab-btn');
+    const mockupViews = document.querySelectorAll('.mockup-view');
+
+    mockupBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetView = btn.getAttribute('data-view');
+            mockupBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            mockupViews.forEach(view => {
+                view.classList.remove('active');
+                if (view.getAttribute('id') === 'view-' + targetView) {
+                    view.classList.add('active');
+                }
+            });
+        });
+    });
 
     // 1.1 Features Tab Switcher Logic
     const tabBtns = document.querySelectorAll('.tab-btn');

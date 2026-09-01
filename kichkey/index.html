@@ -6,7 +6,7 @@
   <title>Kích Hoạt & Gia Hạn Bản Quyền Tự Động | CANPOS CTV</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Inter -->
+  <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -44,20 +44,12 @@
     .gradient-primary {
       background: linear-gradient(135deg, #6200EE 0%, #7C3AED 50%, #4F46E5 100%);
     }
-    .pulse-ring {
-      animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    .animate-fade-in {
+      animation: fadeIn 0.3s ease-out forwards;
     }
-    @keyframes pulse-ring {
-      0% { transform: scale(0.95); opacity: 0.8; }
-      50% { transform: scale(1.15); opacity: 0.3; }
-      100% { transform: scale(0.95); opacity: 0.8; }
-    }
-    .custom-scroll::-webkit-scrollbar {
-      width: 6px;
-    }
-    .custom-scroll::-webkit-scrollbar-thumb {
-      background-color: #CBD5E1;
-      border-radius: 9999px;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -121,7 +113,7 @@
         <div class="flex flex-col sm:flex-row gap-3">
           <div class="relative flex-grow">
             <i data-lucide="search" class="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
-            <input type="text" id="phoneInput" placeholder="Nhập SĐT (ví dụ: 0912345678) hoặc Mã Gian Hàng" 
+            <input type="text" id="phoneInput" placeholder="Ví dụ: 0912345678 hoặc Mã Store ID..." 
                    class="w-full pl-12 pr-4 py-3.5 rounded-2xl border-2 border-slate-200 focus:border-purple-600 focus:outline-none font-bold text-slate-800 text-base transition">
           </div>
           <button id="btnSearch" onclick="searchTenant()" class="bg-slate-900 hover:bg-black text-white px-6 py-3.5 rounded-2xl font-bold text-sm flex items-center justify-center space-x-2 transition shadow-md active:scale-[0.98]">
@@ -130,28 +122,56 @@
           </button>
         </div>
 
-        <!-- THẺ THÔNG TIN GIAN HÀNG (Hiển thị sau khi tìm thấy) -->
-        <div id="tenantCard" class="hidden mt-4 bg-purple-50/70 border border-purple-200 rounded-2xl p-4 sm:p-5 animate-fade-in">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div class="space-y-1">
+        <!-- THẺ THÔNG TIN GIAN HÀNG & HẠN DÙNG TỪNG MÔ HÌNH -->
+        <div id="tenantCard" class="hidden mt-4 bg-purple-50/70 border border-purple-200 rounded-3xl p-5 sm:p-6 animate-fade-in">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-purple-200/80 gap-2">
+            <div>
               <div class="flex items-center space-x-2 flex-wrap">
                 <i data-lucide="store" class="w-5 h-5 text-purple-700"></i>
-                <h3 id="storeNameTxt" class="font-extrabold text-base sm:text-lg text-purple-950">Tên Cửa Hàng</h3>
-                <span id="storeIdBadge" class="px-2.5 py-0.5 rounded-lg text-[11px] font-bold bg-purple-200/70 text-purple-800">ID: --</span>
+                <h3 id="storeNameTxt" class="font-extrabold text-lg sm:text-xl text-purple-950">Tên Cửa Hàng</h3>
+                <span id="storeIdBadge" class="px-2.5 py-0.5 rounded-lg text-xs font-bold bg-purple-200/80 text-purple-900">ID: --</span>
               </div>
-              <p class="text-xs text-slate-600 flex items-center space-x-1.5 flex-wrap">
+              <p class="text-xs text-slate-600 flex items-center space-x-2 mt-1">
                 <i data-lucide="user" class="w-3.5 h-3.5 text-slate-400"></i>
-                <span>Chủ sở hữu: <strong id="ownerNameTxt" class="text-slate-800">Trương Minh Cần</strong></span>
+                <span>Chủ sở hữu: <strong id="ownerNameTxt" class="text-slate-800">--</strong></span>
                 <span class="text-slate-300">•</span>
-                <span>SĐT: <strong id="phoneTxt" class="text-slate-800">0912345678</strong></span>
+                <span>SĐT: <strong id="phoneTxt" class="text-slate-800">--</strong></span>
               </p>
             </div>
+          </div>
 
-            <div class="text-right sm:border-l sm:border-purple-200/80 sm:pl-5">
-              <p class="text-[11px] text-slate-500 font-medium">Hạn sử dụng hiện tại:</p>
-              <div id="expiryBadge" class="mt-0.5 inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">
-                15/10/2026
+          <!-- LƯỚI DANH SÁCH HẠN SỬ DỤNG TỪNG MÔ HÌNH -->
+          <div class="mt-4">
+            <p class="text-xs font-bold text-purple-900 mb-2.5 flex items-center space-x-1.5">
+              <i data-lucide="calendar" class="w-4 h-4 text-purple-600"></i>
+              <span>Hạn sử dụng các mô hình & dịch vụ:</span>
+            </p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
+              
+              <!-- POS BÁN HÀNG -->
+              <div class="bg-white p-3 rounded-2xl border border-purple-100 shadow-sm">
+                <span class="text-[11px] text-slate-500 font-medium block mb-1">POS Bán Hàng:</span>
+                <span id="expPos" class="font-bold text-xs px-2 py-0.5 rounded-lg bg-slate-100 text-slate-700 inline-block">--/--/----</span>
               </div>
+
+              <!-- CHẤM CÔNG -->
+              <div class="bg-white p-3 rounded-2xl border border-purple-100 shadow-sm">
+                <span class="text-[11px] text-slate-500 font-medium block mb-1">Máy Chấm Công:</span>
+                <span id="expAttendance" class="font-bold text-xs px-2 py-0.5 rounded-lg bg-slate-100 text-slate-700 inline-block">--/--/----</span>
+              </div>
+
+              <!-- THIẾT KẾ TEM NHÃN -->
+              <div class="bg-white p-3 rounded-2xl border border-purple-100 shadow-sm">
+                <span class="text-[11px] text-slate-500 font-medium block mb-1">Thiết Kế Tem:</span>
+                <span id="expLabel" class="font-bold text-xs px-2 py-0.5 rounded-lg bg-slate-100 text-slate-700 inline-block">--/--/----</span>
+              </div>
+
+              <!-- LẤY SỐ THỨ TỰ -->
+              <div class="bg-white p-3 rounded-2xl border border-purple-100 shadow-sm">
+                <span class="text-[11px] text-slate-500 font-medium block mb-1">Lấy Số Thứ Tự:</span>
+                <span id="expQueue" class="font-bold text-xs px-2 py-0.5 rounded-lg bg-slate-100 text-slate-700 inline-block">--/--/----</span>
+              </div>
+
             </div>
           </div>
         </div>
@@ -159,66 +179,36 @@
         <p id="searchError" class="text-xs text-rose-600 font-medium mt-2 hidden"></p>
       </div>
 
-      <!-- BƯỚC 2: CHỌN GÓI GIA HẠN (GIÁ CTV) -->
+      <!-- BƯỚC 2: CHỌN MÔ HÌNH & GÓI GIA HẠN (GIÁ CTV) -->
       <div id="packageSection" class="mb-8 opacity-40 pointer-events-none transition-all duration-300">
         <div class="flex items-center space-x-2.5 mb-4">
           <span class="w-7 h-7 rounded-full bg-purple-600 text-white font-bold text-xs flex items-center justify-center shadow-md shadow-purple-500/30">2</span>
-          <h2 class="text-base sm:text-lg font-bold text-slate-800">Chọn Gói Gia Hạn (Bảng Giá Đại Lý / CTV)</h2>
+          <h2 class="text-base sm:text-lg font-bold text-slate-800">Chọn Mô Hình Cần Kích Hoạt / Gia Hạn</h2>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-          
-          <!-- GÓI 1 NĂM -->
-          <label class="relative flex items-center p-4 rounded-2xl border-2 border-slate-200 hover:border-purple-400 cursor-pointer transition bg-white has-[:checked]:border-purple-600 has-[:checked]:bg-purple-50/40 shadow-sm">
-            <input type="radio" name="packageType" value="1_year" checked class="w-5 h-5 text-purple-600 focus:ring-purple-500 border-slate-300">
-            <div class="ml-3.5 flex-grow">
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-sm text-slate-900">Gói 1 Năm</span>
-                <span class="font-extrabold text-base text-purple-700">500.000 đ</span>
-              </div>
-              <p class="text-xs text-slate-500 mt-0.5">Thời hạn: 12 tháng sử dụng</p>
-            </div>
-          </label>
+        <!-- TABS CHỌN MÔ HÌNH -->
+        <div class="flex flex-wrap gap-2 mb-5">
+          <button type="button" onclick="selectService('pos')" id="tab_pos" 
+                  class="service-tab px-4 py-2.5 rounded-2xl font-bold text-xs border-2 border-purple-600 bg-purple-600 text-white shadow-sm transition">
+            🏪 POS Bán Hàng (F&B / Retail)
+          </button>
+          <button type="button" onclick="selectService('attendance')" id="tab_attendance" 
+                  class="service-tab px-4 py-2.5 rounded-2xl font-bold text-xs border-2 border-slate-200 bg-white text-slate-700 hover:border-purple-300 transition">
+            ⏰ Máy Chấm Công & Lương
+          </button>
+          <button type="button" onclick="selectService('label')" id="tab_label" 
+                  class="service-tab px-4 py-2.5 rounded-2xl font-bold text-xs border-2 border-slate-200 bg-white text-slate-700 hover:border-purple-300 transition">
+            🏷️ Thiết Kế Tem Nhãn
+          </button>
+          <button type="button" onclick="selectService('queue')" id="tab_queue" 
+                  class="service-tab px-4 py-2.5 rounded-2xl font-bold text-xs border-2 border-slate-200 bg-white text-slate-700 hover:border-purple-300 transition">
+            🔢 Lấy Số Thứ Tự (Queue)
+          </button>
+        </div>
 
-          <!-- GÓI 2.5 NĂM (TẶNG 6 THÁNG) -->
-          <label class="relative flex items-center p-4 rounded-2xl border-2 border-purple-300 hover:border-purple-500 cursor-pointer transition bg-purple-50/20 has-[:checked]:border-purple-600 has-[:checked]:bg-purple-50/60 shadow-sm">
-            <span class="absolute -top-2.5 right-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">TẶNG 6 THÁNG</span>
-            <input type="radio" name="packageType" value="2.5_year" class="w-5 h-5 text-purple-600 focus:ring-purple-500 border-slate-300">
-            <div class="ml-3.5 flex-grow">
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-sm text-slate-900">Gói 2.5 Năm</span>
-                <span class="font-extrabold text-base text-purple-700">1.000.000 đ</span>
-              </div>
-              <p class="text-xs text-slate-500 mt-0.5">Thời hạn: 30 tháng (2 năm + 6 tháng)</p>
-            </div>
-          </label>
-
-          <!-- GÓI 5 NĂM (TẶNG 3 NĂM) -->
-          <label class="relative flex items-center p-4 rounded-2xl border-2 border-slate-200 hover:border-purple-400 cursor-pointer transition bg-white has-[:checked]:border-purple-600 has-[:checked]:bg-purple-50/40 shadow-sm">
-            <span class="absolute -top-2.5 right-4 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">TẶNG 3 NĂM</span>
-            <input type="radio" name="packageType" value="5_year" class="w-5 h-5 text-purple-600 focus:ring-purple-500 border-slate-300">
-            <div class="ml-3.5 flex-grow">
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-sm text-slate-900">Gói 5 Năm (60 Tháng)</span>
-                <span class="font-extrabold text-base text-purple-700">1.500.000 đ</span>
-              </div>
-              <p class="text-xs text-slate-500 mt-0.5">Mua 2 năm tặng 3 năm = 5 năm</p>
-            </div>
-          </label>
-
-          <!-- GÓI TRỌN ĐỜI -->
-          <label class="relative flex items-center p-4 rounded-2xl border-2 border-amber-300 hover:border-amber-500 cursor-pointer transition bg-amber-50/20 has-[:checked]:border-purple-600 has-[:checked]:bg-purple-50/60 shadow-sm">
-            <span class="absolute -top-2.5 right-4 bg-amber-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">VĨNH VIỄN</span>
-            <input type="radio" name="packageType" value="lifetime" class="w-5 h-5 text-purple-600 focus:ring-purple-500 border-slate-300">
-            <div class="ml-3.5 flex-grow">
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-sm text-slate-900">Gói Trọn Đời (100 Năm)</span>
-                <span class="font-extrabold text-base text-purple-700">3.000.000 đ</span>
-              </div>
-              <p class="text-xs text-slate-500 mt-0.5">Sử dụng không giới hạn thời gian</p>
-            </div>
-          </label>
-
+        <!-- DANH SÁCH GÓI GIÁ CTV (Thay đổi linh hoạt theo mô hình được chọn) -->
+        <div id="packagesContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <!-- Sẽ được render động bằng JavaScript -->
         </div>
 
         <div class="mt-6">
@@ -229,7 +219,7 @@
         </div>
       </div>
 
-      <!-- BƯỚC 3: MÀN HÌNH THANH TOÁN QR (Hiện khi tạo đơn) -->
+      <!-- BƯỚC 3: MÀN HÌNH THANH TOÁN QR -->
       <div id="paymentSection" class="hidden border-t border-slate-200 pt-8 animate-fade-in">
         <div class="text-center max-w-md mx-auto">
           <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold mb-4">
@@ -238,7 +228,7 @@
           </div>
 
           <h3 class="text-xl font-bold text-slate-900 mb-1">Quét Mã QR Để Thanh Toán</h3>
-          <p class="text-xs text-slate-500 mb-5">Hệ thống tự động kích hoạt gian hàng ngay khi nhận được tiền</p>
+          <p id="paymentServiceLabel" class="text-xs text-purple-700 font-bold mb-5">Gia hạn POS Bán Hàng</p>
 
           <!-- KHUNG MÃ QR -->
           <div class="relative bg-white p-4 rounded-3xl border-2 border-purple-200 shadow-xl inline-block mb-5">
@@ -295,8 +285,8 @@
         </div>
         <h2 class="text-2xl font-black text-slate-900 mb-2">GIA HẠN THÀNH CÔNG!</h2>
         <p class="text-sm text-slate-600 max-w-md mx-auto mb-6">
-          Gian hàng <strong id="successStoreName" class="text-purple-700">...</strong> đã được gia hạn thành công đến ngày:
-          <br><strong id="successExpiryDate" class="text-lg text-emerald-700 font-extrabold block mt-2">--/--/----</strong>
+          Dịch vụ <strong id="successServiceName" class="text-purple-700 font-bold">...</strong> cho Gian hàng <strong id="successStoreName" class="text-slate-800 font-bold">...</strong> đã được gia hạn thành công đến ngày:
+          <br><strong id="successExpiryDate" class="text-xl text-emerald-700 font-black block mt-2">--/--/----</strong>
         </p>
 
         <button onclick="resetFlow()" class="gradient-primary text-white px-8 py-3.5 rounded-2xl font-bold text-sm shadow-lg shadow-purple-500/25 hover:opacity-95 transition">
@@ -314,21 +304,57 @@
 
   <!-- ================= JAVASCRIPT XỬ LÝ ================= -->
   <script>
-    // URL Backend Firebase Cloud Functions của CANPOS
     const API_BASE_URL = "https://asia-east1-canpos-7862b.cloudfunctions.net";
     const PASSCODE = "canpos.com.vn";
 
     let currentStore = null;
+    let selectedService = "pos";
     let activeOrderId = null;
     let pollTimer = null;
 
-    // Khởi tạo icon Lucide
+    // Cấu hình bảng giá theo mô hình
+    const PRICING_DATA = {
+      pos: {
+        title: "POS Bán Hàng (F&B / Retail)",
+        packages: [
+          { id: "1_year", name: "Gói 1 Năm", duration: "12 tháng", price: 500000, tag: null },
+          { id: "2.5_year", name: "Gói 2.5 Năm", duration: "30 tháng (2 năm + 6 tháng)", price: 1000000, tag: "TẶNG 6 THÁNG" },
+          { id: "5_year", name: "Gói 5 Năm (60 Tháng)", duration: "Mua 2 năm tặng 3 năm", price: 1500000, tag: "TẶNG 3 NĂM" },
+          { id: "lifetime", name: "Gói Trọn Đời (100 Năm)", duration: "Vĩnh viễn", price: 3000000, tag: "VĨNH VIỄN" }
+        ]
+      },
+      attendance: {
+        title: "Máy Chấm Công & Tính Lương",
+        packages: [
+          { id: "1_year", name: "Gói 1 Năm", duration: "12 tháng", price: 500000, tag: null },
+          { id: "2.5_year", name: "Gói 2.5 Năm", duration: "30 tháng (2 năm + 6 tháng)", price: 1000000, tag: "TẶNG 6 THÁNG" },
+          { id: "5_year", name: "Gói 5 Năm (60 Tháng)", duration: "Mua 2 năm tặng 3 năm", price: 1500000, tag: "TẶNG 3 NĂM" },
+          { id: "lifetime", name: "Gói Trọn Đời (100 Năm)", duration: "Vĩnh viễn", price: 3000000, tag: "VĨNH VIỄN" }
+        ]
+      },
+      label: {
+        title: "Thiết Kế Tem Nhãn Nâng Cao",
+        packages: [
+          { id: "1_year", name: "Gói 1 Năm", duration: "12 tháng sử dụng", price: 250000, tag: null },
+          { id: "lifetime", name: "Gói Trọn Đời (100 Năm)", duration: "Sử dụng vĩnh viễn", price: 1500000, tag: "VĨNH VIỄN" }
+        ]
+      },
+      queue: {
+        title: "Lấy Số Thứ Tự (Queue)",
+        packages: [
+          { id: "1_year", name: "Gói 1 Năm", duration: "12 tháng sử dụng", price: 250000, tag: null },
+          { id: "lifetime", name: "Gói Trọn Đời (100 Năm)", duration: "Sử dụng vĩnh viễn", price: 1500000, tag: "VĨNH VIỄN" }
+        ]
+      }
+    };
+
     document.addEventListener("DOMContentLoaded", () => {
       lucide.createIcons();
       checkAuth();
+      renderPackages();
     });
 
-    // 1. Kiểm tra xác thực mật mã bảo vệ
+    // 1. Xác thực mật mã
     function checkAuth() {
       const isAuth = localStorage.getItem("canpos_ctv_auth");
       if (isAuth === "true") {
@@ -355,17 +381,64 @@
       location.reload();
     }
 
-    // 2. Tra cứu thông tin Gian hàng theo SĐT
+    // 2. Chuyển Tab Mô hình
+    function selectService(service) {
+      selectedService = service;
+      document.querySelectorAll(".service-tab").forEach(tab => {
+        tab.className = "service-tab px-4 py-2.5 rounded-2xl font-bold text-xs border-2 border-slate-200 bg-white text-slate-700 hover:border-purple-300 transition";
+      });
+
+      const activeTab = document.getElementById(`tab_${service}`);
+      if (activeTab) {
+        activeTab.className = "service-tab px-4 py-2.5 rounded-2xl font-bold text-xs border-2 border-purple-600 bg-purple-600 text-white shadow-sm transition";
+      }
+
+      renderPackages();
+    }
+
+    function renderPackages() {
+      const container = document.getElementById("packagesContainer");
+      const serviceData = PRICING_DATA[selectedService] || PRICING_DATA.pos;
+      
+      let html = "";
+      serviceData.packages.forEach((pkg, idx) => {
+        const isChecked = idx === 0 ? "checked" : "";
+        const formattedPrice = new Intl.NumberFormat('vi-VN').format(pkg.price) + " đ";
+        
+        let tagHtml = "";
+        if (pkg.tag) {
+          tagHtml = `<span class="absolute -top-2.5 right-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">${pkg.tag}</span>`;
+        }
+
+        html += `
+          <label class="relative flex items-center p-4 rounded-2xl border-2 border-slate-200 hover:border-purple-400 cursor-pointer transition bg-white has-[:checked]:border-purple-600 has-[:checked]:bg-purple-50/40 shadow-sm">
+            ${tagHtml}
+            <input type="radio" name="packageType" value="${pkg.id}" ${isChecked} class="w-5 h-5 text-purple-600 focus:ring-purple-500 border-slate-300">
+            <div class="ml-3.5 flex-grow">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-sm text-slate-900">${pkg.name}</span>
+                <span class="font-extrabold text-base text-purple-700">${formattedPrice}</span>
+              </div>
+              <p class="text-xs text-slate-500 mt-0.5">${pkg.duration}</p>
+            </div>
+          </label>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    // 3. Tra cứu gian hàng
     async function searchTenant() {
       const phoneInput = document.getElementById("phoneInput");
-      const phone = phoneInput.value.trim().replace(/[\s\.\-\+]/g, "");
+      const rawVal = phoneInput.value.trim();
       const btn = document.getElementById("btnSearch");
       const err = document.getElementById("searchError");
       const tenantCard = document.getElementById("tenantCard");
       const pkgSection = document.getElementById("packageSection");
 
-      if (!phone || phone.length < 9) {
-        err.textContent = "Vui lòng nhập số điện thoại hợp lệ.";
+      if (!rawVal) {
+        err.textContent = "Vui lòng nhập Số điện thoại hoặc Mã Store ID.";
         err.classList.remove("hidden");
         return;
       }
@@ -376,7 +449,7 @@
       lucide.createIcons();
 
       try {
-        const res = await fetch(`${API_BASE_URL}/checkTenantByPhone?phone=${encodeURIComponent(phone)}`);
+        const res = await fetch(`${API_BASE_URL}/checkTenantByPhone?keyword=${encodeURIComponent(rawVal)}`);
         const data = await res.json();
 
         if (!res.ok || !data.success) {
@@ -388,17 +461,22 @@
         document.getElementById("ownerNameTxt").textContent = data.ownerName;
         document.getElementById("phoneTxt").textContent = data.phone;
         document.getElementById("storeIdBadge").textContent = "ID: " + (data.loginStoreId || data.storeId);
-        
-        const expDate = new Date(data.expiryDate);
-        const expFormatted = `${expDate.getDate().toString().padStart(2, '0')}/${(expDate.getMonth()+1).toString().padStart(2, '0')}/${expDate.getFullYear()}`;
-        const expBadge = document.getElementById("expiryBadge");
-        
-        if (data.isExpired) {
-          expBadge.className = "mt-0.5 inline-block px-3 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-800";
-          expBadge.textContent = `Đã hết hạn (${expFormatted})`;
+
+        // Hiển thị hạn của 4 mô hình
+        formatExpiryBadge("expPos", data.expiries?.pos);
+        formatExpiryBadge("expAttendance", data.expiries?.attendance);
+        formatExpiryBadge("expLabel", data.expiries?.label);
+        formatExpiryBadge("expQueue", data.expiries?.queue);
+
+        // Tự động chọn tab theo mô hình kinh doanh của quán
+        if (data.businessType === "label" || data.businessType === "label_designer") {
+          selectService("label");
+        } else if (data.businessType === "queue") {
+          selectService("queue");
+        } else if (data.businessType === "attendance") {
+          selectService("attendance");
         } else {
-          expBadge.className = "mt-0.5 inline-block px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800";
-          expBadge.textContent = expFormatted;
+          selectService("pos");
         }
 
         tenantCard.classList.remove("hidden");
@@ -412,12 +490,34 @@
         pkgSection.classList.add("opacity-40", "pointer-events-none");
       } finally {
         btn.disabled = false;
-        btn.innerHTML = `<i data-lucide="search" class="w-4 h-4"></i><span>KIỂM TRA GIAN HÀNG</span>`;
+        btn.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i><span>KIỂM TRA GIAN HÀNG</span>`;
         lucide.createIcons();
       }
     }
 
-    // 3. Tạo đơn hàng và Sinh mã VietQR
+    function formatExpiryBadge(elemId, isoDateStr) {
+      const el = document.getElementById(elemId);
+      if (!el) return;
+      if (!isoDateStr) {
+        el.textContent = "Chưa kích hoạt";
+        el.className = "font-bold text-[11px] px-2 py-0.5 rounded-lg bg-slate-100 text-slate-400 inline-block";
+        return;
+      }
+
+      const d = new Date(isoDateStr);
+      const isExpired = d < new Date();
+      const formatted = `${d.getDate().toString().padStart(2, '0')}/${(d.getMonth()+1).toString().padStart(2, '0')}/${d.getFullYear()}`;
+
+      if (isExpired) {
+        el.textContent = `Hết hạn (${formatted})`;
+        el.className = "font-bold text-[11px] px-2 py-0.5 rounded-lg bg-rose-100 text-rose-700 inline-block";
+      } else {
+        el.textContent = formatted;
+        el.className = "font-bold text-[11px] px-2 py-0.5 rounded-lg bg-emerald-100 text-emerald-800 inline-block";
+      }
+    }
+
+    // 4. Tạo đơn hàng và Sinh VietQR
     async function createOrder() {
       if (!currentStore) return;
 
@@ -436,6 +536,7 @@
           body: JSON.stringify({
             storeId: currentStore.storeId,
             phone: currentStore.phone,
+            serviceType: selectedService,
             packageType: packageType,
             ctvCode: "CTV_KICHKEY"
           })
@@ -450,11 +551,11 @@
         document.getElementById("qrImage").src = data.qrUrl;
         document.getElementById("amountTxt").textContent = new Intl.NumberFormat('vi-VN').format(data.amount) + " đ";
         document.getElementById("memoTxt").textContent = data.memo;
+        document.getElementById("paymentServiceLabel").textContent = `Gia hạn: ${data.serviceName} (${data.packageName})`;
 
         document.getElementById("paymentSection").classList.remove("hidden");
         document.getElementById("paymentSection").scrollIntoView({ behavior: 'smooth' });
 
-        // Bắt đầu lắng nghe trạng thái đơn hàng mỗi 2.5 giây
         startPollingOrderStatus(data.orderId);
 
       } catch (e) {
@@ -466,7 +567,6 @@
       }
     }
 
-    // 4. Polling trạng thái đơn hàng (Tự động nhận diện khi tiền vào)
     function startPollingOrderStatus(orderId) {
       if (pollTimer) clearInterval(pollTimer);
 
@@ -485,7 +585,6 @@
       }, 2500);
     }
 
-    // 5. Hiển thị thông báo thành công + Pháo hoa
     function showSuccess(data) {
       document.getElementById("packageSection").classList.add("hidden");
       document.getElementById("paymentSection").classList.add("hidden");
@@ -493,6 +592,7 @@
 
       const successSection = document.getElementById("successSection");
       document.getElementById("successStoreName").textContent = data.storeName || currentStore.storeName;
+      document.getElementById("successServiceName").textContent = data.serviceName || "Phần mềm CANPOS";
       
       if (data.newExpiryDate) {
         const d = new Date(data.newExpiryDate);
@@ -502,7 +602,6 @@
       successSection.classList.remove("hidden");
       successSection.scrollIntoView({ behavior: 'smooth' });
 
-      // Bắn pháo hoa ăn mừng
       confetti({
         particleCount: 100,
         spread: 70,
@@ -523,7 +622,6 @@
       document.getElementById("successSection").classList.add("hidden");
     }
 
-    // Tiện ích sao chép văn bản
     function copyText(elementId) {
       const text = document.getElementById(elementId).textContent.trim().replace(/\s+/g, ' ');
       navigator.clipboard.writeText(text).then(() => {

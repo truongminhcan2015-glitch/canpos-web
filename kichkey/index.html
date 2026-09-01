@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Kích Hoạt & Gia Hạn Bản Quyền Tự Động | CANPOS CTV</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              50: '#F5F3FF',
+              100: '#EDE9FE',
+              500: '#7C3AED',
+              600: '#6200EE',
+              700: '#5B21B6',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #F8FAFC;
+    }
+    .gradient-primary {
+      background: linear-gradient(135deg, #6200EE 0%, #7C3AED 50%, #4F46E5 100%);
+    }
+    .pulse-ring {
+      animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 0.3; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background-color: #CBD5E1;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-slate-800 flex flex-col justify-between">
+
+  <!-- ================= POPUP BẢO VỆ CTV ================= -->
+  <div id="authModal" class="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-md rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-100 text-center animate-fade-in">
+      <div class="w-16 h-16 rounded-2xl bg-purple-100 text-purple-700 mx-auto flex items-center justify-center mb-4">
+        <i data-lucide="shield-check" class="w-8 h-8"></i>
+      </div>
+      <h2 class="text-xl font-bold text-slate-900 mb-1">Cổng Kích Hoạt Đại Lý & CTV</h2>
+      <p class="text-xs text-slate-500 mb-6">Vui lòng nhập mã bảo vệ để truy cập bảng giá đại lý</p>
+      
+      <div class="space-y-4">
+        <div class="relative">
+          <input type="text" id="passcodeInput" placeholder="Nhập mã bảo vệ..." 
+                 class="w-full px-4 py-3.5 rounded-2xl border-2 border-slate-200 focus:border-purple-600 focus:outline-none text-center font-bold text-slate-800 text-base tracking-wider placeholder:font-normal placeholder:tracking-normal transition">
+        </div>
+        <p id="authError" class="text-xs text-rose-600 font-medium hidden">Mã bảo vệ không chính xác. Vui lòng thử lại!</p>
+        <button onclick="verifyPasscode()" class="w-full gradient-primary text-white py-3.5 rounded-2xl font-bold text-sm shadow-lg shadow-purple-500/25 hover:opacity-95 transition active:scale-[0.98]">
+          XÁC NHẬN TRUY CẬP
+        </button>
+      </div>
+      <p class="text-[11px] text-slate-400 mt-5">Hệ thống kích hoạt thời hạn tự động 24/7 - CANPOS</p>
+    </div>
+  </div>
+
+  <!-- ================= HEADER CHÍNH ================= -->
+  <header class="gradient-primary text-white shadow-lg sticky top-0 z-30">
+    <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center backdrop-blur-sm border border-white/20">
+          <i data-lucide="zap" class="w-6 h-6 text-amber-300 fill-amber-300"></i>
+        </div>
+        <div>
+          <h1 class="font-extrabold text-lg sm:text-xl tracking-tight leading-tight">CANPOS KÍCH KEY</h1>
+          <p class="text-[11px] text-purple-200">Kích hoạt & Gia hạn gian hàng tự động 24/7</p>
+        </div>
+      </div>
+      <button onclick="logoutPasscode()" title="Đăng xuất CTV" class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-semibold flex items-center space-x-1.5 transition border border-white/20">
+        <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+        <span class="hidden sm:inline">Khóa trang</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ================= NỘI DUNG CHÍNH ================= -->
+  <main class="max-w-4xl mx-auto px-4 py-6 sm:py-8 w-full flex-grow">
+    
+    <!-- STEP CONTAINER -->
+    <div class="bg-white rounded-3xl shadow-sm border border-slate-200/80 p-5 sm:p-8">
+
+      <!-- BƯỚC 1: TRA CỨU GIAN HÀNG -->
+      <div class="mb-8">
+        <div class="flex items-center space-x-2.5 mb-4">
+          <span class="w-7 h-7 rounded-full bg-purple-600 text-white font-bold text-xs flex items-center justify-center shadow-md shadow-purple-500/30">1</span>
+          <h2 class="text-base sm:text-lg font-bold text-slate-800">Nhập Số Điện Thoại Khách Hàng</h2>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3">
+          <div class="relative flex-grow">
+            <i data-lucide="phone" class="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
+            <input type="tel" id="phoneInput" placeholder="Ví dụ: 0912345678" 
+                   class="w-full pl-12 pr-4 py-3.5 rounded-2xl border-2 border-slate-200 focus:border-purple-600 focus:outline-none font-bold text-slate-800 text-base transition">
+          </div>
+          <button id="btnSearch" onclick="searchTenant()" class="bg-slate-900 hover:bg-black text-white px-6 py-3.5 rounded-2xl font-bold text-sm flex items-center justify-center space-x-2 transition shadow-md active:scale-[0.98]">
+            <i data-lucide="search" class="w-4 h-4"></i>
+            <span>KIỂM TRA GIAN HÀNG</span>
+          </button>
+        </div>
+
+        <!-- THẺ THÔNG TIN GIAN HÀNG (Hiển thị sau khi tìm thấy) -->
+        <div id="tenantCard" class="hidden mt-4 bg-purple-50/70 border border-purple-200 rounded-2xl p-4 sm:p-5 animate-fade-in">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="space-y-1">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="store" class="w-5 h-5 text-purple-700"></i>
+                <h3 id="storeNameTxt" class="font-extrabold text-base sm:text-lg text-purple-950">Tên Cửa Hàng</h3>
+              </div>
+              <p class="text-xs text-slate-600 flex items-center space-x-1.5">
+                <i data-lucide="user" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>Chủ sở hữu: <strong id="ownerNameTxt" class="text-slate-800">Trương Minh Cần</strong></span>
+                <span class="text-slate-300">•</span>
+                <span>SĐT: <strong id="phoneTxt" class="text-slate-800">0912345678</strong></span>
+              </p>
+            </div>
+
+            <div class="text-right sm:border-l sm:border-purple-200/80 sm:pl-5">
+              <p class="text-[11px] text-slate-500 font-medium">Hạn sử dụng hiện tại:</p>
+              <div id="expiryBadge" class="mt-0.5 inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">
+                15/10/2026
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p id="searchError" class="text-xs text-rose-600 font-medium mt-2 hidden"></p>
+      </div>
+
+      <!-- BƯỚC 2: CHỌN GÓI GIA HẠN (GIÁ CTV) -->
+      <div id="packageSection" class="mb-8 opacity-40 pointer-events-none transition-all duration-300">
+        <div class="flex items-center space-x-2.5 mb-4">
+          <span class="w-7 h-7 rounded-full bg-purple-600 text-white font-bold text-xs flex items-center justify-center shadow-md shadow-purple-500/30">2</span>
+          <h2 class="text-base sm:text-lg font-bold text-slate-800">Chọn Gói Gia Hạn (Bảng Giá Đại Lý / CTV)</h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          
+          <!-- GÓI 1 NĂM -->
+          <label class="relative flex items-center p-4 rounded-2xl border-2 border-slate-200 hover:border-purple-400 cursor-pointer transition bg-white has-[:checked]:border-purple-600 has-[:checked]:bg-purple-50/40 shadow-sm">
+            <input type="radio" name="packageType" value="1_year" checked class="w-5 h-5 text-purple-600 focus:ring-purple-500 border-slate-300">
+            <div class="ml-3.5 flex-grow">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-sm text-slate-900">Gói 1 Năm</span>
+                <span class="font-extrabold text-base text-purple-700">500.000 đ</span>
+              </div>
+              <p class="text-xs text-slate-500 mt-0.5">Thời hạn: 12 tháng sử dụng</p>
+            </div>
+          </label>
+
+          <!-- GÓI 2.5 NĂM (TẶNG 6 THÁNG) -->
+          <label class="relative flex items-center p-4 rounded-2xl border-2 border-purple-300 hover:border-purple-500 cursor-pointer transition bg-purple-50/20 has-[:checked]:border-purple-600 has-[:checked]:bg-purple-50/60 shadow-sm">
+            <span class="absolute -top-2.5 right-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">TẶNG 6 THÁNG</span>
+            <input type="radio" name="packageType" value="2.5_year" class="w-5 h-5 text-purple-600 focus:ring-purple-500 border-slate-300">
+            <div class="ml-3.5 flex-grow">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-sm text-slate-900">Gói 2.5 Năm</span>
+                <span class="font-extrabold text-base text-purple-700">1.000.000 đ</span>
+              </div>
+              <p class="text-xs text-slate-500 mt-0.5">Thời hạn: 30 tháng (2 năm + 6 tháng)</p>
+            </div>
+          </label>
+
+          <!-- GÓI 5 NĂM (TẶNG 3 NĂM) -->
+          <label class="relative flex items-center p-4 rounded-2xl border-2 border-slate-200 hover:border-purple-400 cursor-pointer transition bg-white has-[:checked]:border-purple-600 has-[:checked]:bg-purple-50/40 shadow-sm">
+            <span class="absolute -top-2.5 right-4 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">TẶNG 3 NĂM</span>
+            <input type="radio" name="packageType" value="5_year" class="w-5 h-5 text-purple-600 focus:ring-purple-500 border-slate-300">
+            <div class="ml-3.5 flex-grow">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-sm text-slate-900">Gói 5 Năm (60 Tháng)</span>
+                <span class="font-extrabold text-base text-purple-700">1.500.000 đ</span>
+              </div>
+              <p class="text-xs text-slate-500 mt-0.5">Mua 2 năm tặng 3 năm = 5 năm</p>
+            </div>
+          </label>
+
+          <!-- GÓI TRỌN ĐỜI -->
+          <label class="relative flex items-center p-4 rounded-2xl border-2 border-amber-300 hover:border-amber-500 cursor-pointer transition bg-amber-50/20 has-[:checked]:border-purple-600 has-[:checked]:bg-purple-50/60 shadow-sm">
+            <span class="absolute -top-2.5 right-4 bg-amber-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">VĨNH VIỄN</span>
+            <input type="radio" name="packageType" value="lifetime" class="w-5 h-5 text-purple-600 focus:ring-purple-500 border-slate-300">
+            <div class="ml-3.5 flex-grow">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-sm text-slate-900">Gói Trọn Đời (100 Năm)</span>
+                <span class="font-extrabold text-base text-purple-700">3.000.000 đ</span>
+              </div>
+              <p class="text-xs text-slate-500 mt-0.5">Sử dụng không giới hạn thời gian</p>
+            </div>
+          </label>
+
+        </div>
+
+        <div class="mt-6">
+          <button id="btnCreateOrder" onclick="createOrder()" class="w-full gradient-primary text-white py-4 rounded-2xl font-bold text-base shadow-xl shadow-purple-500/25 hover:opacity-95 transition flex items-center justify-center space-x-2 active:scale-[0.98]">
+            <i data-lucide="qr-code" class="w-5 h-5"></i>
+            <span>TẠO MÃ THANH TOÁN VIETQR</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- BƯỚC 3: MÀN HÌNH THANH TOÁN QR (Hiện khi tạo đơn) -->
+      <div id="paymentSection" class="hidden border-t border-slate-200 pt-8 animate-fade-in">
+        <div class="text-center max-w-md mx-auto">
+          <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold mb-4">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+            <span>Đang chờ chuyển khoản tự động</span>
+          </div>
+
+          <h3 class="text-xl font-bold text-slate-900 mb-1">Quét Mã QR Để Thanh Toán</h3>
+          <p class="text-xs text-slate-500 mb-5">Hệ thống tự động kích hoạt gian hàng ngay khi nhận được tiền</p>
+
+          <!-- KHUNG MÃ QR -->
+          <div class="relative bg-white p-4 rounded-3xl border-2 border-purple-200 shadow-xl inline-block mb-5">
+            <img id="qrImage" src="" alt="Mã VietQR" class="w-64 h-64 sm:w-72 sm:h-72 mx-auto rounded-2xl object-contain">
+            <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-purple-600 text-white text-[11px] font-bold px-4 py-1 rounded-full shadow-md whitespace-nowrap">
+              VietinBank 24/7
+            </div>
+          </div>
+
+          <!-- THÔNG TIN CHUYỂN KHOẢN KÈM NÚT COPY -->
+          <div class="bg-slate-50 rounded-2xl p-4 text-left border border-slate-200 space-y-3 mb-6">
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-slate-500">Số tiền:</span>
+              <div class="flex items-center space-x-2">
+                <strong id="amountTxt" class="text-base font-extrabold text-purple-700">500.000 đ</strong>
+                <button onclick="copyText('amountTxt')" class="p-1 text-slate-400 hover:text-purple-600" title="Sao chép"><i data-lucide="copy" class="w-4 h-4"></i></button>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-slate-500">Ngân hàng:</span>
+              <span class="text-xs font-bold text-slate-800">VietinBank</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-slate-500">Số tài khoản:</span>
+              <div class="flex items-center space-x-2">
+                <strong id="stkTxt" class="text-xs font-bold text-slate-800">100873005494</strong>
+                <button onclick="copyText('stkTxt')" class="p-1 text-slate-400 hover:text-purple-600" title="Sao chép"><i data-lucide="copy" class="w-4 h-4"></i></button>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-slate-500">Chủ tài khoản:</span>
+              <span class="text-xs font-bold text-slate-800">TRUONG MINH CAN</span>
+            </div>
+            <div class="flex items-center justify-between bg-amber-50 p-2.5 rounded-xl border border-amber-200">
+              <div>
+                <span class="text-[11px] text-amber-800 font-bold block">Nội dung bắt buộc:</span>
+                <strong id="memoTxt" class="text-xs font-black text-purple-700">SEVQR CANPOS123456</strong>
+              </div>
+              <button onclick="copyText('memoTxt')" class="bg-amber-500 hover:bg-amber-600 text-white text-xs px-3 py-1.5 rounded-lg font-bold flex items-center space-x-1 shadow-sm">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                <span>Copy</span>
+              </button>
+            </div>
+          </div>
+
+          <p class="text-[11px] text-slate-400 italic">Lưu ý: Giữ nguyên nội dung chuyển khoản để hệ thống tự động hoàn tất 100%.</p>
+        </div>
+      </div>
+
+      <!-- BƯỚC 4: MÀN HÌNH THÀNH CÔNG -->
+      <div id="successSection" class="hidden text-center py-8 animate-fade-in">
+        <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full mx-auto flex items-center justify-center mb-4 shadow-lg shadow-emerald-500/20">
+          <i data-lucide="check-circle-2" class="w-12 h-12"></i>
+        </div>
+        <h2 class="text-2xl font-black text-slate-900 mb-2">GIA HẠN THÀNH CÔNG!</h2>
+        <p class="text-sm text-slate-600 max-w-md mx-auto mb-6">
+          Gian hàng <strong id="successStoreName" class="text-purple-700">...</strong> đã được gia hạn thành công đến ngày:
+          <br><strong id="successExpiryDate" class="text-lg text-emerald-700 font-extrabold block mt-2">--/--/----</strong>
+        </p>
+
+        <button onclick="resetFlow()" class="gradient-primary text-white px-8 py-3.5 rounded-2xl font-bold text-sm shadow-lg shadow-purple-500/25 hover:opacity-95 transition">
+          TIẾP TỤC GIA HẠN CHO KHÁCH KHÁC
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="text-center py-6 text-xs text-slate-400 border-t border-slate-200 bg-white">
+    <p>© 2026 CANPOS - Nền tảng Quản lý Bán hàng Đa kênh Chuyên nghiệp</p>
+  </footer>
+
+  <!-- ================= JAVASCRIPT XỬ LÝ ================= -->
+  <script>
+    // URL Backend Firebase Cloud Functions của CANPOS
+    const API_BASE_URL = "https://asia-east1-canpos-7862b.cloudfunctions.net";
+    const PASSCODE = "canpos.com.vn";
+
+    let currentStore = null;
+    let activeOrderId = null;
+    let pollTimer = null;
+
+    // Khởi tạo icon Lucide
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+      checkAuth();
+    });
+
+    // 1. Kiểm tra xác thực mật mã bảo vệ
+    function checkAuth() {
+      const isAuth = localStorage.getItem("canpos_ctv_auth");
+      if (isAuth === "true") {
+        document.getElementById("authModal").classList.add("hidden");
+      } else {
+        document.getElementById("authModal").classList.remove("hidden");
+      }
+    }
+
+    function verifyPasscode() {
+      const input = document.getElementById("passcodeInput").value.trim().toLowerCase();
+      const err = document.getElementById("authError");
+      if (input === PASSCODE) {
+        localStorage.setItem("canpos_ctv_auth", "true");
+        document.getElementById("authModal").classList.add("hidden");
+        err.classList.add("hidden");
+      } else {
+        err.classList.remove("hidden");
+      }
+    }
+
+    function logoutPasscode() {
+      localStorage.removeItem("canpos_ctv_auth");
+      location.reload();
+    }
+
+    // 2. Tra cứu thông tin Gian hàng theo SĐT
+    async function searchTenant() {
+      const phoneInput = document.getElementById("phoneInput");
+      const phone = phoneInput.value.trim().replace(/[\s\.\-\+]/g, "");
+      const btn = document.getElementById("btnSearch");
+      const err = document.getElementById("searchError");
+      const tenantCard = document.getElementById("tenantCard");
+      const pkgSection = document.getElementById("packageSection");
+
+      if (!phone || phone.length < 9) {
+        err.textContent = "Vui lòng nhập số điện thoại hợp lệ.";
+        err.classList.remove("hidden");
+        return;
+      }
+
+      err.classList.add("hidden");
+      btn.disabled = true;
+      btn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i><span>Đang tra cứu...</span>`;
+      lucide.createIcons();
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/checkTenantByPhone?phone=${encodeURIComponent(phone)}`);
+        const data = await res.json();
+
+        if (!res.ok || !data.success) {
+          throw new Error(data.message || "Không tìm thấy gian hàng này.");
+        }
+
+        currentStore = data;
+        document.getElementById("storeNameTxt").textContent = data.storeName;
+        document.getElementById("ownerNameTxt").textContent = data.ownerName;
+        document.getElementById("phoneTxt").textContent = data.phone;
+        
+        const expDate = new Date(data.expiryDate);
+        const expFormatted = `${expDate.getDate().toString().padStart(2, '0')}/${(expDate.getMonth()+1).toString().padStart(2, '0')}/${expDate.getFullYear()}`;
+        const expBadge = document.getElementById("expiryBadge");
+        
+        if (data.isExpired) {
+          expBadge.className = "mt-0.5 inline-block px-3 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-800";
+          expBadge.textContent = `Đã hết hạn (${expFormatted})`;
+        } else {
+          expBadge.className = "mt-0.5 inline-block px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800";
+          expBadge.textContent = expFormatted;
+        }
+
+        tenantCard.classList.remove("hidden");
+        pkgSection.classList.remove("opacity-40", "pointer-events-none");
+        lucide.createIcons();
+
+      } catch (e) {
+        err.textContent = e.message || "Không tìm thấy gian hàng.";
+        err.classList.remove("hidden");
+        tenantCard.classList.add("hidden");
+        pkgSection.classList.add("opacity-40", "pointer-events-none");
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i data-lucide="search" class="w-4 h-4"></i><span>KIỂM TRA GIAN HÀNG</span>`;
+        lucide.createIcons();
+      }
+    }
+
+    // 3. Tạo đơn hàng và Sinh mã VietQR
+    async function createOrder() {
+      if (!currentStore) return;
+
+      const selectedRadio = document.querySelector('input[name="packageType"]:checked');
+      const packageType = selectedRadio ? selectedRadio.value : "1_year";
+      const btn = document.getElementById("btnCreateOrder");
+
+      btn.disabled = true;
+      btn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i><span>Đang tạo mã QR...</span>`;
+      lucide.createIcons();
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/createSubscriptionOrder`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            storeId: currentStore.storeId,
+            phone: currentStore.phone,
+            packageType: packageType,
+            ctvCode: "CTV_KICHKEY"
+          })
+        });
+
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          throw new Error(data.message || "Không thể tạo mã thanh toán.");
+        }
+
+        activeOrderId = data.orderId;
+        document.getElementById("qrImage").src = data.qrUrl;
+        document.getElementById("amountTxt").textContent = new Intl.NumberFormat('vi-VN').format(data.amount) + " đ";
+        document.getElementById("memoTxt").textContent = data.memo;
+
+        document.getElementById("paymentSection").classList.remove("hidden");
+        document.getElementById("paymentSection").scrollIntoView({ behavior: 'smooth' });
+
+        // Bắt đầu lắng nghe trạng thái đơn hàng mỗi 2.5 giây
+        startPollingOrderStatus(data.orderId);
+
+      } catch (e) {
+        alert("Lỗi: " + (e.message || "Không thể tạo đơn hàng"));
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i data-lucide="qr-code" class="w-5 h-5"></i><span>TẠO MÃ THANH TOÁN VIETQR</span>`;
+        lucide.createIcons();
+      }
+    }
+
+    // 4. Polling trạng thái đơn hàng (Tự động nhận diện khi tiền vào)
+    function startPollingOrderStatus(orderId) {
+      if (pollTimer) clearInterval(pollTimer);
+
+      pollTimer = setInterval(async () => {
+        try {
+          const res = await fetch(`${API_BASE_URL}/checkOrderStatus?orderId=${encodeURIComponent(orderId)}`);
+          const data = await res.json();
+
+          if (data.success && data.status === "COMPLETED") {
+            clearInterval(pollTimer);
+            showSuccess(data);
+          }
+        } catch (e) {
+          console.error("Lỗi polling order:", e);
+        }
+      }, 2500);
+    }
+
+    // 5. Hiển thị thông báo thành công + Pháo hoa
+    function showSuccess(data) {
+      document.getElementById("packageSection").classList.add("hidden");
+      document.getElementById("paymentSection").classList.add("hidden");
+      document.getElementById("tenantCard").classList.add("hidden");
+
+      const successSection = document.getElementById("successSection");
+      document.getElementById("successStoreName").textContent = data.storeName || currentStore.storeName;
+      
+      if (data.newExpiryDate) {
+        const d = new Date(data.newExpiryDate);
+        document.getElementById("successExpiryDate").textContent = `${d.getDate().toString().padStart(2, '0')}/${(d.getMonth()+1).toString().padStart(2, '0')}/${d.getFullYear()}`;
+      }
+
+      successSection.classList.remove("hidden");
+      successSection.scrollIntoView({ behavior: 'smooth' });
+
+      // Bắn pháo hoa ăn mừng
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    }
+
+    function resetFlow() {
+      currentStore = null;
+      activeOrderId = null;
+      if (pollTimer) clearInterval(pollTimer);
+
+      document.getElementById("phoneInput").value = "";
+      document.getElementById("packageSection").classList.remove("hidden");
+      document.getElementById("packageSection").classList.add("opacity-40", "pointer-events-none");
+      document.getElementById("paymentSection").classList.add("hidden");
+      document.getElementById("tenantCard").classList.add("hidden");
+      document.getElementById("successSection").classList.add("hidden");
+    }
+
+    // Tiện ích sao chép văn bản
+    function copyText(elementId) {
+      const text = document.getElementById(elementId).textContent.trim().replace(/\s+/g, ' ');
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Đã sao chép: " + text);
+      }).catch(() => {
+        alert("Không thể sao chép tự động.");
+      });
+    }
+  </script>
+</body>
+</html>

@@ -115,17 +115,17 @@
       <div class="mb-8">
         <div class="flex items-center space-x-2.5 mb-4">
           <span class="w-7 h-7 rounded-full bg-purple-600 text-white font-bold text-xs flex items-center justify-center shadow-md shadow-purple-500/30">1</span>
-          <h2 class="text-base sm:text-lg font-bold text-slate-800">Nhập Số Điện Thoại Khách Hàng</h2>
+          <h2 class="text-base sm:text-lg font-bold text-slate-800">Nhập Số Điện Thoại hoặc Mã Gian Hàng (Store ID)</h2>
         </div>
 
         <div class="flex flex-col sm:flex-row gap-3">
           <div class="relative flex-grow">
-            <i data-lucide="phone" class="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
-            <input type="tel" id="phoneInput" placeholder="Ví dụ: 0912345678" 
+            <i data-lucide="search" class="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
+            <input type="text" id="phoneInput" placeholder="Nhập SĐT (ví dụ: 0912345678) hoặc Mã Gian Hàng" 
                    class="w-full pl-12 pr-4 py-3.5 rounded-2xl border-2 border-slate-200 focus:border-purple-600 focus:outline-none font-bold text-slate-800 text-base transition">
           </div>
           <button id="btnSearch" onclick="searchTenant()" class="bg-slate-900 hover:bg-black text-white px-6 py-3.5 rounded-2xl font-bold text-sm flex items-center justify-center space-x-2 transition shadow-md active:scale-[0.98]">
-            <i data-lucide="search" class="w-4 h-4"></i>
+            <i data-lucide="check" class="w-4 h-4"></i>
             <span>KIỂM TRA GIAN HÀNG</span>
           </button>
         </div>
@@ -134,11 +134,12 @@
         <div id="tenantCard" class="hidden mt-4 bg-purple-50/70 border border-purple-200 rounded-2xl p-4 sm:p-5 animate-fade-in">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div class="space-y-1">
-              <div class="flex items-center space-x-2">
+              <div class="flex items-center space-x-2 flex-wrap">
                 <i data-lucide="store" class="w-5 h-5 text-purple-700"></i>
                 <h3 id="storeNameTxt" class="font-extrabold text-base sm:text-lg text-purple-950">Tên Cửa Hàng</h3>
+                <span id="storeIdBadge" class="px-2.5 py-0.5 rounded-lg text-[11px] font-bold bg-purple-200/70 text-purple-800">ID: --</span>
               </div>
-              <p class="text-xs text-slate-600 flex items-center space-x-1.5">
+              <p class="text-xs text-slate-600 flex items-center space-x-1.5 flex-wrap">
                 <i data-lucide="user" class="w-3.5 h-3.5 text-slate-400"></i>
                 <span>Chủ sở hữu: <strong id="ownerNameTxt" class="text-slate-800">Trương Minh Cần</strong></span>
                 <span class="text-slate-300">•</span>
@@ -386,6 +387,7 @@
         document.getElementById("storeNameTxt").textContent = data.storeName;
         document.getElementById("ownerNameTxt").textContent = data.ownerName;
         document.getElementById("phoneTxt").textContent = data.phone;
+        document.getElementById("storeIdBadge").textContent = "ID: " + (data.loginStoreId || data.storeId);
         
         const expDate = new Date(data.expiryDate);
         const expFormatted = `${expDate.getDate().toString().padStart(2, '0')}/${(expDate.getMonth()+1).toString().padStart(2, '0')}/${expDate.getFullYear()}`;

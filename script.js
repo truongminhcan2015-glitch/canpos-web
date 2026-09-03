@@ -95,9 +95,14 @@ function initCANPOS() {
         btn.addEventListener('click', () => {
             const targetTab = btn.getAttribute('data-tab');
             
-            // Toggle active state for tab buttons
-            tabBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+            // Toggle active state for all matching tab buttons (đồng bộ cả 2 nhóm chạy lặp)
+            tabBtns.forEach(b => {
+                if (b.getAttribute('data-tab') === targetTab) {
+                    b.classList.add('active');
+                } else {
+                    b.classList.remove('active');
+                }
+            });
             
             // Toggle active state for tab contents
             tabContents.forEach(content => {
@@ -106,6 +111,36 @@ function initCANPOS() {
                     content.classList.add('active');
                 }
             });
+        });
+    });
+
+    // 1.2 Download Platform Switcher on Mobile (Hỗ trợ chuyển đổi tức thì)
+    window.switchDownloadTab = function(targetPlatform, btnElem) {
+        const downloadTabBtns = document.querySelectorAll('.download-tab-btn');
+        const downloadCards = document.querySelectorAll('.download-card');
+        
+        downloadTabBtns.forEach(b => b.classList.remove('active'));
+        if (btnElem) {
+            btnElem.classList.add('active');
+        } else {
+            const matchBtn = document.querySelector(`.download-tab-btn[data-download-tab="${targetPlatform}"]`);
+            if (matchBtn) matchBtn.classList.add('active');
+        }
+        
+        downloadCards.forEach(card => {
+            if (card.id === `download-${targetPlatform}`) {
+                card.classList.add('active-mobile');
+            } else {
+                card.classList.remove('active-mobile');
+            }
+        });
+    };
+
+    const downloadTabBtns = document.querySelectorAll('.download-tab-btn');
+    downloadTabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetPlatform = btn.getAttribute('data-download-tab');
+            window.switchDownloadTab(targetPlatform, btn);
         });
     });
 

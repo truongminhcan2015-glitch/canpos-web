@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1280">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="mgHjreij7WweystqPGh5Cz6ND0AWXI7Wxe2y7xdbfcI" />
     <title>CANPOS - Phần mềm bán hàng & quản lý chuyên nghiệp thế hệ mới</title>
     <meta name="description" content="CANPOS - Giải pháp quản lý bán hàng toàn diện cho F&B, bán lẻ, kho hàng, nhân sự và tính lương tự động. Kết nối TikTok Shop & Shopee, tự động hóa đơn điện tử, đồng bộ đơn hàng và tồn kho đa sàn.">
@@ -20,8 +20,8 @@
     <style>
         /* Phong cách nền dự phòng để tránh trang bị trắng xóa khi mở local file */
         body {
-            background-color: #130722;
-            color: #f3eff5;
+            background-color: #140b28;
+            color: #f8fafc;
         }
     </style>
     <script>
@@ -42,11 +42,15 @@
                 CAN<span class="logo-accent">POS</span>
             </a>
             <nav class="nav-menu">
-                <a href="#features" class="nav-link">Tính Năng</a>
-                <a href="#downloads" class="nav-link">Tải Ứng Dụng</a>
-                <a href="#pricing" class="nav-link">Bảng Giá</a>
-                <a href="#guide" class="nav-link">Hướng Dẫn</a>
-                <a href="#contact" class="nav-link">Liên Hệ</a>
+                <a href="#features" class="nav-link"><i class="fa-solid fa-layer-group"></i> Tính Năng</a>
+                <a href="#downloads" class="nav-link"><i class="fa-solid fa-download"></i> Tải Ứng Dụng</a>
+                <a href="#pricing" class="nav-link"><i class="fa-solid fa-tags"></i> Bảng Giá</a>
+                <a href="#guide" class="nav-link"><i class="fa-solid fa-book-open"></i> Hướng Dẫn</a>
+                <a href="#contact" class="nav-link"><i class="fa-solid fa-headset"></i> Liên Hệ</a>
+                <div class="mobile-nav-actions">
+                    <a href="#downloads" class="btn btn-secondary btn-sm">Dùng Thử</a>
+                    <a href="https://app.canpos.vn/register" target="_blank" class="btn btn-primary btn-sm">Đăng Ký Ngay</a>
+                </div>
             </nav>
             <div class="nav-actions">
                 <a href="#downloads" class="btn btn-secondary btn-sm" style="margin-right: 8px;">Dùng Thử</a>
@@ -267,23 +271,242 @@
                     </div>
                 </div>
 
-                <!-- Left Smartphone Device: Real Reports App (5.jpg) -->
-                <div class="hero-phone-device device-left">
-                    <span class="phone-badge-tag badge-cyan"><i class="fa-solid fa-chart-pie"></i> Báo Cáo 360°</span>
-                    <div class="phone-screen-inner">
-                        <img src="assets/5.jpg" alt="Giao diện Báo Cáo Doanh Thu CANPOS Mobile" class="phone-screen-img" loading="eager">
+                <!-- Mobile Devices Row (Tách riêng dòng 2 trên mobile) -->
+                <div class="hero-mobile-devices-row">
+                    <!-- Left Smartphone Device: Real Reports App (5.jpg) -->
+                    <div class="hero-phone-device device-left">
+                        <span class="phone-badge-tag badge-cyan"><i class="fa-solid fa-chart-pie"></i> Báo Cáo 360°</span>
+                        <div class="phone-screen-inner">
+                            <img src="assets/5.jpg" alt="Giao diện Báo Cáo Doanh Thu CANPOS Mobile" class="phone-screen-img" loading="eager">
+                        </div>
+                    </div>
+
+                    <!-- Right Smartphone Device: Real POS Order App (3.jpg & 4.jpg) -->
+                    <div class="hero-phone-device device-right">
+                        <span class="phone-badge-tag"><i class="fa-solid fa-mobile-screen"></i> Bán Hàng &amp; Order</span>
+                        <div class="phone-screen-inner">
+                            <img id="right-phone-img" src="assets/3.jpg" alt="Giao diện Bán Hàng &amp; Order CANPOS Mobile" class="phone-screen-img" loading="eager">
+                            <div class="phone-toggle-pills">
+                                <button type="button" class="phone-pill-btn active" onclick="switchRightPhone('assets/3.jpg', this)">Thực Đơn</button>
+                                <button type="button" class="phone-pill-btn" onclick="switchRightPhone('assets/4.jpg', this)">Phòng Bàn</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners & Integrations Marquee Section -->
+    <section class="partners-marquee-section">
+        <div class="container">
+            <div class="partners-header text-center">
+                <div class="partners-badge">
+                    <i class="fa-solid fa-bolt-lightning"></i>
+                    <span>HỆ SINH THÁI TÍCH HỢP TOÀN DIỆN</span>
+                </div>
+                <h2 class="partners-title">CÁC ĐỐI TÁC LỚN TÍCH HỢP CÙNG <span class="text-gradient">CANPOS</span></h2>
+                <p class="partners-subtitle">Tự động kết nối hóa đơn điện tử chuẩn thuế, đồng bộ sàn TMĐT đa kênh và thanh toán QR động thông minh</p>
+            </div>
+        </div>
+
+        <div class="marquee-wrapper">
+            <div class="marquee-track">
+                <!-- Group 1 -->
+                <div class="marquee-group">
+                    <!-- Partner 1: VIETTEL -->
+                    <div class="partner-card viettel">
+                        <div class="partner-icon-wrap logo-bg-white">
+                            <img src="viettel.png" alt="Viettel e-Invoice" class="partner-logo-img">
+                        </div>
+                        <div class="partner-info">
+                            <div class="partner-name">VIETTEL</div>
+                            <div class="partner-desc">Tích hợp xuất hoá đơn điện tử</div>
+                        </div>
+                        <span class="partner-tag">e-Invoice</span>
+                    </div>
+
+                    <!-- Partner 2: VNPT INVOICE -->
+                    <div class="partner-card vnpt">
+                        <div class="partner-icon-wrap logo-bg-white">
+                            <img src="vnpt.jpg" alt="VNPT Invoice" class="partner-logo-img">
+                        </div>
+                        <div class="partner-info">
+                            <div class="partner-name">VNPT INVOICE</div>
+                            <div class="partner-desc">Tích hợp xuất hoá đơn điện tử</div>
+                        </div>
+                        <span class="partner-tag">Chuẩn 78/TT-BTC</span>
+                    </div>
+
+                    <!-- Partner 3: MISA INVOICE -->
+                    <div class="partner-card misa">
+                        <div class="partner-icon-wrap logo-bg-white">
+                            <img src="misa.png" alt="MISA meInvoice" class="partner-logo-img">
+                        </div>
+                        <div class="partner-info">
+                            <div class="partner-name">MISA INVOICE</div>
+                            <div class="partner-desc">Tích hợp xuất hoá đơn điện tử</div>
+                        </div>
+                        <span class="partner-tag">Tự Động 100%</span>
+                    </div>
+
+                    <!-- Partner 4: ICORP -->
+                    <div class="partner-card icorp">
+                        <div class="partner-icon-wrap logo-bg-white">
+                            <img src="icorp.png" alt="ICORP Invoice" class="partner-logo-img">
+                        </div>
+                        <div class="partner-info">
+                            <div class="partner-name">ICORP</div>
+                            <div class="partner-desc">Tích hợp xuất hoá đơn điện tử</div>
+                        </div>
+                        <span class="partner-tag">Tích Hợp API</span>
+                    </div>
+
+                    <!-- Partner 5: TIKTOK SHOP -->
+                    <div class="partner-card tiktok">
+                        <div class="partner-icon-wrap logo-bg-white">
+                            <i class="fa-brands fa-tiktok" style="color: #000000; font-size: 1.6rem;"></i>
+                        </div>
+                        <div class="partner-info">
+                            <div class="partner-name">TIKTOK SHOP</div>
+                            <div class="partner-desc">Đồng Bộ Đơn Hàng & Tồn Kho Tự Động</div>
+                        </div>
+                        <span class="partner-tag tag-hot"><i class="fa-solid fa-fire"></i> Đa Kênh</span>
+                    </div>
+
+                    <!-- Partner 6: SHOPEE -->
+                    <div class="partner-card shopee">
+                        <div class="partner-icon-wrap logo-bg-white">
+                            <img src="shopee.png" alt="Shopee" class="partner-logo-img">
+                        </div>
+                        <div class="partner-info">
+                            <div class="partner-name">SHOPEE</div>
+                            <div class="partner-desc">Liên Kết Gian Hàng & Trừ Kho Tức Thì</div>
+                        </div>
+                        <span class="partner-tag tag-hot"><i class="fa-solid fa-fire"></i> Bán Chạy</span>
+                    </div>
+
+                    <!-- Partner 7: TÍCH HỢP VIETQR -->
+                    <div class="partner-card vietqr">
+                        <div class="partner-icon-wrap logo-bg-white">
+                            <img src="Vietqr.webp" alt="VietQR" class="partner-logo-img">
+                        </div>
+                        <div class="partner-info">
+                            <div class="partner-name">TÍCH HỢP VIETQR</div>
+                            <div class="partner-desc">Tạo Mã QR Động Theo Từng Đơn Hàng</div>
+                        </div>
+                        <span class="partner-tag tag-success">Khớp Tiền 1s</span>
+                    </div>
+
+                    <!-- Partner 8: LOA THÔNG BÁO QR -->
+                    <div class="partner-card soundbox">
+                        <div class="partner-icon-wrap soundbox-bg">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </div>
+                        <div class="partner-info">
+                            <div class="partner-name">LOA BÁO THANH TOÁN QR</div>
+                            <div class="partner-desc">Thông Báo Nhận Tiền Bằng Giọng Nói</div>
+                        </div>
+                        <span class="partner-tag">Soundbox</span>
                     </div>
                 </div>
 
-                <!-- Right Smartphone Device: Real POS Order App (3.jpg & 4.jpg) -->
-                <div class="hero-phone-device device-right">
-                    <span class="phone-badge-tag"><i class="fa-solid fa-mobile-screen"></i> Bán Hàng &amp; Order</span>
-                    <div class="phone-screen-inner">
-                        <img id="right-phone-img" src="assets/3.jpg" alt="Giao diện Bán Hàng &amp; Order CANPOS Mobile" class="phone-screen-img" loading="eager">
-                        <div class="phone-toggle-pills">
-                            <button type="button" class="phone-pill-btn active" onclick="switchRightPhone('assets/3.jpg', this)">Thực Đơn</button>
-                            <button type="button" class="phone-pill-btn" onclick="switchRightPhone('assets/4.jpg', this)">Phòng Bàn</button>
+                <!-- Group 2 (Duplicate for Seamless Infinite Loop) -->
+                <div class="marquee-group" aria-hidden="true">
+                    <!-- Partner 1: VIETTEL -->
+                    <div class="partner-card viettel">
+                        <div class="partner-icon-wrap logo-bg-white">
+                            <img src="viettel.png" alt="Viettel e-Invoice" class="partner-logo-img">
                         </div>
+                        <div class="partner-info">
+                            <div class="partner-name">VIETTEL</div>
+                            <div class="partner-desc">Tích hợp xuất hoá đơn điện tử</div>
+                        </div>
+                        <span class="partner-tag">e-Invoice</span>
+                    </div>
+
+                    <!-- Partner 2: VNPT INVOICE -->
+                    <div class="partner-card vnpt">
+                        <div class="partner-icon-wrap logo-bg-white">
+                            <img src="vnpt.jpg" alt="VNPT Invoice" class="partner-logo-img">
+                        </div>
+                        <div class="partner-info">
+                            <div class="partner-name">VNPT INVOICE</div>
+                            <div class="partner-desc">Tích hợp xuất hoá đơn điện tử</div>
+                        </div>
+                        <span class="partner-tag">Chuẩn 78/TT-BTC</span>
+                    </div>
+
+                    <!-- Partner 3: MISA INVOICE -->
+                    <div class="partner-card misa">
+                        <div class="partner-icon-wrap logo-bg-white">
+                            <img src="misa.png" alt="MISA meInvoice" class="partner-logo-img">
+                        </div>
+                        <div class="partner-info">
+                            <div class="partner-name">MISA INVOICE</div>
+                            <div class="partner-desc">Tích hợp xuất hoá đơn điện tử</div>
+                        </div>
+                        <span class="partner-tag">Tự Động 100%</span>
+                    </div>
+
+                    <!-- Partner 4: ICORP -->
+                    <div class="partner-card icorp">
+                        <div class="partner-icon-wrap logo-bg-white">
+                            <img src="icorp.png" alt="ICORP Invoice" class="partner-logo-img">
+                        </div>
+                        <div class="partner-info">
+                            <div class="partner-name">ICORP</div>
+                            <div class="partner-desc">Tích hợp xuất hoá đơn điện tử</div>
+                        </div>
+                        <span class="partner-tag">Tích Hợp API</span>
+                    </div>
+
+                    <!-- Partner 5: TIKTOK SHOP -->
+                    <div class="partner-card tiktok">
+                        <div class="partner-icon-wrap logo-bg-white">
+                            <i class="fa-brands fa-tiktok" style="color: #000000; font-size: 1.6rem;"></i>
+                        </div>
+                        <div class="partner-info">
+                            <div class="partner-name">TIKTOK SHOP</div>
+                            <div class="partner-desc">Đồng Bộ Đơn Hàng & Tồn Kho Tự Động</div>
+                        </div>
+                        <span class="partner-tag tag-hot"><i class="fa-solid fa-fire"></i> Đa Kênh</span>
+                    </div>
+
+                    <!-- Partner 6: SHOPEE -->
+                    <div class="partner-card shopee">
+                        <div class="partner-icon-wrap logo-bg-white">
+                            <img src="shopee.png" alt="Shopee" class="partner-logo-img">
+                        </div>
+                        <div class="partner-info">
+                            <div class="partner-name">SHOPEE</div>
+                            <div class="partner-desc">Liên Kết Gian Hàng & Trừ Kho Tức Thì</div>
+                        </div>
+                        <span class="partner-tag tag-hot"><i class="fa-solid fa-fire"></i> Bán Chạy</span>
+                    </div>
+
+                    <!-- Partner 7: TÍCH HỢP VIETQR -->
+                    <div class="partner-card vietqr">
+                        <div class="partner-icon-wrap logo-bg-white">
+                            <img src="Vietqr.webp" alt="VietQR" class="partner-logo-img">
+                        </div>
+                        <div class="partner-info">
+                            <div class="partner-name">TÍCH HỢP VIETQR</div>
+                            <div class="partner-desc">Tạo Mã QR Động Theo Từng Đơn Hàng</div>
+                        </div>
+                        <span class="partner-tag tag-success">Khớp Tiền 1s</span>
+                    </div>
+
+                    <!-- Partner 8: LOA THÔNG BÁO QR -->
+                    <div class="partner-card soundbox">
+                        <div class="partner-icon-wrap soundbox-bg">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </div>
+                        <div class="partner-info">
+                            <div class="partner-name">LOA BÁO THANH TOÁN QR</div>
+                            <div class="partner-desc">Thông Báo Nhận Tiền Bằng Giọng Nói</div>
+                        </div>
+                        <span class="partner-tag">Soundbox</span>
                     </div>
                 </div>
             </div>

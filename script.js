@@ -87,6 +87,33 @@ function initCANPOS() {
         });
     });
 
+    // 1.05 Industry Filter Logic
+    const indFilterBtns = document.querySelectorAll('.ind-filter-btn');
+    const industryCards = document.querySelectorAll('.industry-card');
+
+    indFilterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filter = btn.getAttribute('data-filter');
+
+            indFilterBtns.forEach(b => {
+                if (b.getAttribute('data-filter') === filter) {
+                    b.classList.add('active');
+                } else {
+                    b.classList.remove('active');
+                }
+            });
+
+            industryCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (filter === 'all' || category === filter) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+    });
+
     // 1.1 Features Tab Switcher Logic
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');

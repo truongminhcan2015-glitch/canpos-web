@@ -90,7 +90,7 @@ img {
 }
 
 .section-padding {
-    padding: 100px 0;
+    padding: 50px 0;
 }
 
 .text-center {
@@ -1900,6 +1900,56 @@ select.form-control option {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 25px rgba(249, 115, 22, 0.15);
 }
 
+/* Shipping Tab Hero Banner (GHN - Giao Hàng Nhanh) */
+.shipping-hero-banner {
+    background: linear-gradient(135deg, rgba(243, 112, 33, 0.22), rgba(0, 70, 127, 0.35) 50%, rgba(243, 112, 33, 0.25));
+    border: 1.5px solid rgba(243, 112, 33, 0.45);
+    border-radius: 20px;
+    padding: 30px 36px;
+    margin-bottom: 35px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 25px rgba(243, 112, 33, 0.2);
+}
+
+.shipping-hero-banner::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle, rgba(243, 112, 33, 0.35), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.shipping-fire-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #f37021, #ff8c00);
+    color: #ffffff;
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(243, 112, 33, 0.4);
+    margin-bottom: 14px;
+}
+
+.brand-tag-ghn {
+    border-color: rgba(243, 112, 33, 0.4);
+}
+.brand-tag-ghn:hover {
+    background: rgba(243, 112, 33, 0.25);
+    border-color: #f37021;
+    color: #ffedd5;
+}
+
 /* Ecommerce Tab Hero Banner (TikTok Shop & Shopee) */
 .ecommerce-hero-banner {
     background: linear-gradient(135deg, rgba(238, 77, 45, 0.2), rgba(0, 0, 0, 0.4) 50%, rgba(254, 44, 85, 0.2));
@@ -2992,7 +3042,7 @@ select.form-control option {
    ========================================================================== */
 .partners-marquee-section {
     position: relative;
-    padding: 10px 0 70px 0;
+    padding: 10px 0 25px 0;
     margin-top: -10px;
     background: transparent;
     border: none;
@@ -4195,11 +4245,544 @@ html, body {
         transform: translateY(6px);
     }
     to {
+        margin-bottom: 4px !important;
+    }
+
+    .download-desc {
+        font-size: 0.8rem !important;
+        margin-bottom: 14px !important;
+        min-height: auto !important;
+    }
+
+    .download-divider {
+        margin: 14px 0 !important;
+    }
+
+    .download-meta {
+        font-size: 0.72rem !important;
+        margin-top: 8px !important;
+    }
+    
+    /* Contact Form & FAQs on Mobile */
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .contact-form-card {
+        padding: 24px 16px;
+        border-radius: 18px;
+    }
+    
+    .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .faq-item {
+        padding: 16px;
+        border-radius: 14px;
+    }
+    
+    /* Footer on Mobile */
+    .footer {
+        padding: 45px 0 25px;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 26px;
+        text-align: center;
+    }
+    
+    .footer-logo {
+        justify-content: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+        padding-top: 20px;
+    }
+}
+
+/* ==========================================================================
+   FEATURES TABS (DESKTOP & MOBILE CONTINUOUS MARQUEE CHẠY NGANG)
+   ========================================================================== */
+.features-tabs-wrapper {
+    position: relative;
+    width: 100%;
+    margin: 0 auto 25px auto;
+}
+
+.features-tabs-track {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.features-tabs-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.features-tabs-group[aria-hidden="true"] {
+    display: none;
+}
+
+.tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: var(--text-muted);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    backdrop-filter: blur(10px);
+}
+
+.tab-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    border-color: rgba(121, 40, 202, 0.5);
+    transform: translateY(-2px);
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, #7928ca, #ff007a);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 4px 20px rgba(121, 40, 202, 0.5);
+}
+
+.tab-btn-highlight {
+    border-color: rgba(255, 94, 0, 0.4);
+}
+
+.tab-new-badge {
+    background: #ff5e00;
+    color: #ffffff;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+/* Mobile: Chạy ngang mượt mà vô tận giống dải thẻ đối tác */
+@media (max-width: 768px) {
+    .features-tabs-wrapper {
+        width: 100vw !important;
+        margin-left: calc(-50vw + 50%) !important;
+        overflow: hidden !important;
+        padding: 10px 0 !important;
+        margin-bottom: 25px !important;
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    }
+
+    .features-tabs-track {
+        display: flex !important;
+        width: max-content !important;
+        animation: tabsMarqueeScroll 28s linear infinite !important;
+    }
+
+    .features-tabs-wrapper:hover .features-tabs-track,
+    .features-tabs-wrapper:active .features-tabs-track {
+        animation-play-state: paused !important;
+    }
+
+    .features-tabs-group {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        gap: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .features-tabs-group[aria-hidden="true"] {
+        display: flex !important;
+    }
+
+    .tab-btn {
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+        font-size: 0.82rem !important;
+        padding: 9px 15px !important;
+        border-radius: 100px !important;
+    }
+
+    @keyframes tabsMarqueeScroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+}
+
+@keyframes fadeInTab {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
+/* ==========================================================
+   INDUSTRIES SECTION - CÁC NGÀNH NGHỀ PHẦN MỀM HỖ TRỢ (12 NGÀNH)
+   ========================================================== */
+.industries-section {
+    position: relative;
+    padding: 30px 0 40px 0;
+    overflow: hidden;
+}
 
+/* Industry Filters (Desktop: Căn giữa tĩnh | Mobile: Chạy ngang Marquee liên tục) */
+.industry-filters-wrapper {
+    position: relative;
+    width: 100%;
+    margin: 0 auto 30px auto;
+    padding: 0;
+}
 
+.industry-filters-track {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 
+.industry-filters-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+}
+
+.industry-filters-group[aria-hidden="true"] {
+    display: none;
+}
+
+.ind-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    color: #e2e8f0;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem; /* Cỡ chữ to rõ ràng */
+    padding: 13px 26px; /* Nút rộng rãi, nổi bật */
+    border-radius: 100px;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    letter-spacing: -0.01em;
+}
+
+.ind-filter-btn i {
+    font-size: 1.15rem;
+    transition: transform 0.3s ease;
+}
+
+.ind-filter-btn:hover {
+    color: #ffffff;
+    border-color: var(--secondary-color);
+    background: rgba(0, 210, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 210, 255, 0.25);
+}
+
+.ind-filter-btn:hover i {
+    transform: scale(1.15);
+}
+
+.ind-filter-btn.active {
+    background: linear-gradient(135deg, #7928ca, #00d2ff);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 8px 30px rgba(0, 210, 255, 0.5), 0 0 20px rgba(121, 40, 202, 0.4);
+}
+
+/* Mobile: Kích hoạt chạy ngang lặp vô tận */
+@media (max-width: 768px) {
+    .industry-filters-wrapper {
+        width: 100vw !important;
+        margin-left: calc(-50vw + 50%) !important;
+        overflow: hidden !important;
+        padding: 6px 0 14px 0 !important;
+        margin-bottom: 25px !important;
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%) !important;
+        mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%) !important;
+    }
+
+    .industry-filters-track {
+        display: flex !important;
+        width: max-content !important;
+        animation: industryMarqueeScroll 26s linear infinite !important;
+    }
+
+    .industry-filters-wrapper:hover .industry-filters-track,
+    .industry-filters-wrapper:active .industry-filters-track {
+        animation-play-state: paused !important;
+    }
+
+    .industry-filters-group {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        gap: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .industry-filters-group[aria-hidden="true"] {
+        display: flex !important;
+    }
+
+    .ind-filter-btn {
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+        font-size: 0.95rem !important;
+        padding: 10px 18px !important;
+    }
+
+    @keyframes industryMarqueeScroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+}
+
+/* Industries Grid */
+.industries-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 26px;
+}
+
+@media (max-width: 1400px) {
+    .industries-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+}
+
+@media (max-width: 992px) {
+    .industries-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .industries-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+}
+
+/* Industry Card */
+.industry-card {
+    background: rgba(30, 15, 59, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(16px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.industry-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0, 210, 255, 0.45);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(121, 40, 202, 0.3);
+}
+
+.industry-card.hidden {
+    display: none !important;
+}
+
+/* Industry Image Wrap */
+.industry-img-wrap {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    overflow: hidden;
+    background: #0f0720;
+}
+
+.industry-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.industry-card:hover .industry-img {
+    transform: scale(1.08);
+}
+
+.industry-img-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: linear-gradient(to top, rgba(30, 15, 59, 0.95), transparent);
+    pointer-events: none;
+}
+
+/* Badges */
+.industry-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 100px;
+    backdrop-filter: blur(10px);
+    z-index: 2;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.industry-badge.fnb {
+    background: rgba(249, 115, 22, 0.9);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.industry-badge.retail {
+    background: rgba(14, 165, 233, 0.9);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.industry-badge.service {
+    background: rgba(168, 85, 247, 0.9);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.industry-badge.special {
+    background: linear-gradient(135deg, #eab308, #ca8a04);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.industry-badge.beauty {
+    background: rgba(236, 72, 153, 0.9);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.industry-badge.gym {
+    background: rgba(16, 185, 129, 0.9);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.industry-badge.pharma {
+    background: rgba(20, 184, 166, 0.9);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.industry-badge.tech {
+    background: rgba(99, 102, 241, 0.9);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.industry-badge.bakery {
+    background: rgba(217, 119, 6, 0.9);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.industry-badge.build {
+    background: rgba(100, 116, 139, 0.9);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Card Content */
+.industry-content {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.industry-title {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+}
+
+.industry-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 16px;
+    flex-grow: 1;
+}
+
+.industry-feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.industry-feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: rgba(248, 250, 252, 0.9);
+    line-height: 1.4;
+}
+
+.industry-feature-list li i {
+    color: var(--secondary-color);
+    font-size: 0.85rem;
+    margin-top: 3px;
+    flex-shrink: 0;
+}

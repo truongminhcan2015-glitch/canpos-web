@@ -1025,87 +1025,84 @@ img {
     gap: 2px;
 }
 
-/* Cart Summary Bottom */
-.cart-summary {
+/* Cart Summary Footer */
+.cart-summary-footer {
     background: #ffffff;
     border-top: 1px solid #e0e0e0;
-    padding: 10px;
-}
-
-.note-input {
-    position: relative;
+    padding: 8px 10px;
     display: flex;
-    align-items: center;
-    margin-bottom: 8px;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.04);
 }
 
-.note-icon {
-    position: absolute;
-    left: 8px;
-    color: #999999;
-    font-size: 0.65rem;
-}
-
-.note-input input {
-    width: 100%;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    padding: 6px 6px 6px 22px;
-    font-size: 0.65rem;
-    background: #fafafa;
-    outline: none;
-}
-
-.total-row {
+.summary-line {
     display: flex;
     justify-content: space-between;
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: #333333;
-    margin-bottom: 10px;
-}
-
-.total-price-red {
-    font-size: 0.95rem;
-    color: #ff5252;
-    font-weight: 800;
-}
-
-.action-buttons {
-    display: grid;
-    grid-template-columns: 40px 1fr 1fr;
-    gap: 6px;
-}
-
-.menu-btn {
-    background: #f1f1f1;
+    align-items: center;
+    font-size: 0.62rem;
     color: #555555;
-    border: 1px solid #dcdcdc;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.75rem;
+    font-weight: 600;
 }
 
-.save-btn {
-    background: #1976d2;
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 10px 0;
-    cursor: pointer;
+.summary-line.highlight-total {
+    font-size: 0.68rem;
+    font-weight: 800;
+    color: #111827;
+    padding-top: 3px;
+    border-top: 1px dashed #e5e7eb;
 }
 
-.pay-btn {
-    background: #388e3c;
-    color: #ffffff;
+.summary-line.highlight-total .total-amount {
+    font-size: 0.85rem;
+    font-weight: 900;
+    color: #ef4444;
+}
+
+.pos-action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 5px;
+    margin-top: 4px;
+}
+
+.action-btn {
     border: none;
     border-radius: 6px;
-    font-size: 0.7rem;
+    padding: 7px 4px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.62rem;
     font-weight: 700;
-    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
     cursor: pointer;
+    transition: var(--transition-smooth);
+    white-space: nowrap;
+}
+
+.btn-print {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+}
+
+.btn-print:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+.btn-checkout {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);
+}
+
+.btn-checkout:hover {
+    background: linear-gradient(135deg, #059669, #047857);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.5);
+    transform: translateY(-1px);
 }
 
 /* Features Section */
@@ -3097,11 +3094,65 @@ select.form-control option {
 }
 
 /* Marquee Scroller */
+.partner-category-block {
+    margin-bottom: 28px;
+    position: relative;
+}
+
+.partner-category-block:last-child {
+    margin-bottom: 0;
+}
+
+.partner-cat-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 14px;
+}
+
+.partner-cat-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 18px;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+    transition: var(--transition-smooth);
+}
+
+.partner-cat-pill:hover {
+    transform: translateY(-2px);
+}
+
+.partner-cat-pill.cat-invoice {
+    background: rgba(59, 130, 246, 0.15);
+    border: 1px solid rgba(59, 130, 246, 0.45);
+    color: #93c5fd;
+    box-shadow: 0 0 16px rgba(59, 130, 246, 0.25);
+}
+
+.partner-cat-pill.cat-shipping {
+    background: rgba(249, 115, 22, 0.15);
+    border: 1px solid rgba(249, 115, 22, 0.45);
+    color: #fdba74;
+    box-shadow: 0 0 16px rgba(249, 115, 22, 0.25);
+}
+
+.partner-cat-pill.cat-ecommerce {
+    background: rgba(236, 72, 153, 0.15);
+    border: 1px solid rgba(236, 72, 153, 0.45);
+    color: #f472b6;
+    box-shadow: 0 0 16px rgba(236, 72, 153, 0.25);
+}
+
 .marquee-wrapper {
     position: relative;
     width: 100%;
     overflow: hidden;
-    padding: 15px 0;
+    padding: 10px 0;
     -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
     mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
 }
@@ -3109,7 +3160,19 @@ select.form-control option {
 .marquee-track {
     display: flex;
     width: max-content;
-    animation: marqueeScroll 40s linear infinite;
+    animation: marqueeScroll 36s linear infinite;
+}
+
+.marquee-track.track-invoice {
+    animation: marqueeScroll 32s linear infinite;
+}
+
+.marquee-track.track-shipping {
+    animation: marqueeScroll 28s linear infinite;
+}
+
+.marquee-track.track-ecommerce {
+    animation: marqueeScroll 34s linear infinite;
 }
 
 .marquee-wrapper:hover .marquee-track {
@@ -3228,6 +3291,30 @@ select.form-control option {
     background: #f0fdf4;
     color: #16a34a;
     border-color: #bbf7d0;
+}
+
+.partner-tag.tag-invoice {
+    background: rgba(59, 130, 246, 0.12);
+    color: #2563eb;
+    border-color: rgba(59, 130, 246, 0.25);
+}
+
+.partner-tag.tag-shipping {
+    background: rgba(243, 112, 33, 0.12);
+    color: #ea580c;
+    border-color: rgba(243, 112, 33, 0.25);
+}
+
+.partner-tag.tag-ecommerce {
+    background: rgba(236, 72, 153, 0.12);
+    color: #db2777;
+    border-color: rgba(236, 72, 153, 0.25);
+}
+
+.partner-tag.tag-soundbox {
+    background: rgba(245, 158, 11, 0.12);
+    color: #d97706;
+    border-color: rgba(245, 158, 11, 0.25);
 }
 
 .soundbox-bg {
@@ -3760,25 +3847,36 @@ html, body {
         font-size: 0.5rem !important;
     }
     
-    .total-row {
-        font-size: 0.52rem !important;
-        margin-top: 3px !important;
+    /* Cart Summary Footer Mobile */
+    .cart-summary-footer {
+        padding: 4px 5px !important;
+        gap: 2px !important;
+    }
+    
+    .summary-line {
+        font-size: 0.46rem !important;
+    }
+    
+    .summary-line.highlight-total {
+        font-size: 0.5rem !important;
         padding-top: 2px !important;
     }
     
-    .total-price-red {
-        font-size: 0.65rem !important;
+    .summary-line.highlight-total .total-amount {
+        font-size: 0.6rem !important;
     }
     
-    .action-buttons {
-        gap: 2px !important;
-        margin-top: 3px !important;
+    .pos-action-buttons {
+        gap: 3px !important;
+        margin-top: 2px !important;
+        grid-template-columns: 1fr 1.4fr !important;
     }
     
-    .action-buttons button {
-        font-size: 0.48rem !important;
-        padding: 4px 4px !important;
+    .action-btn {
+        font-size: 0.42rem !important;
+        padding: 3px 2px !important;
         border-radius: 4px !important;
+        gap: 2px !important;
     }
     
     /* Dòng 2 Điện thoại trên Smartphone nhỏ */
@@ -3796,6 +3894,19 @@ html, body {
     /* Partners Marquee on Mobile */
     .partners-marquee-section {
         padding: 10px 0 45px 0;
+    }
+    
+    .partner-category-block {
+        margin-bottom: 20px !important;
+    }
+    
+    .partner-cat-header {
+        margin-bottom: 8px !important;
+    }
+    
+    .partner-cat-pill {
+        font-size: 0.68rem !important;
+        padding: 4px 12px !important;
     }
     
     .partners-badge {

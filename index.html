@@ -1278,12 +1278,31 @@
                 <p class="section-subtitle">Chi phí minh bạch, không phí ẩn. Chọn gói dịch vụ phù hợp nhất với mô hình của bạn.</p>
             </div>
             
-            <div class="pricing-grid">
+            <!-- POS Pricing Tabs Switcher -->
+            <div class="pos-pricing-tabs-wrapper">
+                <div class="pos-pricing-tabs">
+                    <button type="button" class="pos-pricing-tab-btn active" data-pos-target="pricing-onsite" onclick="switchPosPricing('pricing-onsite', this)">
+                        <i class="fa-solid fa-store"></i> Triển Khai Tận Nơi
+                    </button>
+                    <button type="button" class="pos-pricing-tab-btn" data-pos-target="pricing-online" onclick="switchPosPricing('pricing-online', this)">
+                        <i class="fa-solid fa-bolt"></i> Giá Online Tiết Kiệm
+                        <span class="pos-tab-badge">Tiết Kiệm</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Pricing Explanation Hint Note -->
+            <div class="pricing-note-banner text-center" style="max-width: 760px; margin: 0 auto 28px auto; padding: 10px 18px; background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(255, 255, 255, 0.15); border-radius: 12px; font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
+                <span id="pos-pricing-note"><i class="fa-solid fa-circle-info" style="color: var(--secondary-color); margin-right: 6px;"></i><strong>Gói Triển Khai Tận Nơi:</strong> Kỹ thuật viên CANPOS đến tận quán lắp ráp máy, kết nối máy in và đào tạo nhân viên trực tiếp.</span>
+            </div>
+            
+            <!-- Table 1: On-site Installation & Direct Support -->
+            <div class="pricing-grid pricing-grid-view active" id="pricing-onsite">
                 <!-- Package 1: 1 Year -->
                 <div class="pricing-card">
                     <div class="pricing-header" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">
                         <h3 class="plan-name">Gói 1 Năm</h3>
-                        <p class="plan-desc" style="min-height: 48px; margin-bottom: 20px;">Phù hợp cho cửa hàng trải nghiệm dịch vụ bán hàng ổn định.</p>
+                        <p class="plan-desc" style="min-height: 48px; margin-bottom: 20px;">Kỹ thuật viên đến tận nơi khảo sát, cài đặt &amp; đào tạo sử dụng trực tiếp.</p>
                         <div class="plan-price">
                             <span class="price-value">1.650.000đ</span>
                             <span class="price-period">/năm</span>
@@ -1299,7 +1318,7 @@
                     <div class="pricing-card-badge purple">KHUYÊN DÙNG - TẶNG 6 THÁNG</div>
                     <div class="pricing-header" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">
                         <h3 class="plan-name">Gói 2 Năm</h3>
-                        <p class="plan-desc" style="min-height: 48px; margin-bottom: 20px;">Tặng thêm 6 tháng sử dụng. Tối ưu chi phí vận hành lâu dài cho cửa hàng.</p>
+                        <p class="plan-desc" style="min-height: 48px; margin-bottom: 20px;">Tặng thêm 6 tháng sử dụng. Hỗ trợ kỹ thuật trực tiếp tận nơi, tối ưu chi phí.</p>
                         <div class="plan-price">
                             <span class="price-value">3.300.000đ</span>
                             <span class="price-period">/30 tháng</span>
@@ -1315,7 +1334,7 @@
                     <div class="pricing-card-badge blue">TẶNG 24 THÁNG</div>
                     <div class="pricing-header" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">
                         <h3 class="plan-name">Gói 3 Năm</h3>
-                        <p class="plan-desc" style="min-height: 48px; margin-bottom: 20px;">Tặng thêm 24 tháng sử dụng. Giải pháp bền vững cho chuỗi kinh doanh.</p>
+                        <p class="plan-desc" style="min-height: 48px; margin-bottom: 20px;">Tặng thêm 24 tháng sử dụng. Giải pháp tối ưu, hỗ trợ bảo trì trực tiếp cho chuỗi.</p>
                         <div class="plan-price">
                             <span class="price-value">4.950.000đ</span>
                             <span class="price-period">/60 tháng</span>
@@ -1331,9 +1350,75 @@
                     <div class="pricing-card-badge green">TIẾT KIỆM NHẤT</div>
                     <div class="pricing-header" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">
                         <h3 class="plan-name" style="color: #4caf50;">Gói Trọn Đời</h3>
-                        <p class="plan-desc" style="min-height: 48px; margin-bottom: 20px;">Sử dụng vĩnh viễn không giới hạn thời gian, miễn phí nâng cấp trọn đời.</p>
+                        <p class="plan-desc" style="min-height: 48px; margin-bottom: 20px;">Sử dụng vĩnh viễn không giới hạn thời gian, miễn phí nâng cấp &amp; hỗ trợ trực tiếp.</p>
                         <div class="plan-price">
                             <span class="price-value" style="color: #4caf50;">6.600.000đ</span>
+                            <span class="price-period">/vĩnh viễn</span>
+                        </div>
+                    </div>
+                    <div class="pricing-action" style="margin-top: auto; padding-top: 24px;">
+                        <a href="#contact" class="btn btn-secondary btn-full" style="border-color: rgba(76, 175, 80, 0.4); color: #4caf50;">Đăng Ký Sở Hữu</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table 2: Online & Remote Support -->
+            <div class="pricing-grid pricing-grid-view" id="pricing-online">
+                <!-- Package 1: 1 Year -->
+                <div class="pricing-card">
+                    <div class="pricing-header" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">
+                        <h3 class="plan-name">Gói 1 Năm</h3>
+                        <p class="plan-desc" style="min-height: 48px; margin-bottom: 20px;">Kích hoạt siêu tốc sau 5 phút qua Ultraviewer/Zalo, hỗ trợ từ xa chu đáo 24/7.</p>
+                        <div class="plan-price">
+                            <span class="price-value" style="color: var(--secondary-color);">990.000đ</span>
+                            <span class="price-period">/năm</span>
+                        </div>
+                    </div>
+                    <div class="pricing-action" style="margin-top: auto; padding-top: 24px;">
+                        <a href="#contact" class="btn btn-secondary btn-full">Đăng Ký Ngay</a>
+                    </div>
+                </div>
+                
+                <!-- Package 2: 2 Years (Popular) -->
+                <div class="pricing-card popular">
+                    <div class="pricing-card-badge purple">KHUYÊN DÙNG - TẶNG 6 THÁNG</div>
+                    <div class="pricing-header" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">
+                        <h3 class="plan-name">Gói 2 Năm</h3>
+                        <p class="plan-desc" style="min-height: 48px; margin-bottom: 20px;">Tặng thêm 6 tháng sử dụng. Tiết kiệm chi phí tối đa, kỹ thuật hỗ trợ online tức thì.</p>
+                        <div class="plan-price">
+                            <span class="price-value" style="color: #ffffff;">1.980.000đ</span>
+                            <span class="price-period">/30 tháng</span>
+                        </div>
+                    </div>
+                    <div class="pricing-action" style="margin-top: auto; padding-top: 24px;">
+                        <a href="#contact" class="btn btn-primary btn-full">Đăng Ký Nhận Ưu Đãi</a>
+                    </div>
+                </div>
+                
+                <!-- Package 3: 3 Years -->
+                <div class="pricing-card">
+                    <div class="pricing-card-badge blue">TẶNG 24 THÁNG</div>
+                    <div class="pricing-header" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">
+                        <h3 class="plan-name">Gói 3 Năm</h3>
+                        <p class="plan-desc" style="min-height: 48px; margin-bottom: 20px;">Tặng thêm 24 tháng sử dụng. Chi phí siêu tối ưu, đồng hành online cùng doanh nghiệp.</p>
+                        <div class="plan-price">
+                            <span class="price-value" style="color: var(--secondary-color);">2.970.000đ</span>
+                            <span class="price-period">/60 tháng</span>
+                        </div>
+                    </div>
+                    <div class="pricing-action" style="margin-top: auto; padding-top: 24px;">
+                        <a href="#contact" class="btn btn-secondary btn-full">Đăng Ký Ngay</a>
+                    </div>
+                </div>
+                
+                <!-- Package 4: Lifetime -->
+                <div class="pricing-card lifetime">
+                    <div class="pricing-card-badge green">TIẾT KIỆM NHẤT</div>
+                    <div class="pricing-header" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">
+                        <h3 class="plan-name" style="color: #4caf50;">Gói Trọn Đời</h3>
+                        <p class="plan-desc" style="min-height: 48px; margin-bottom: 20px;">Sử dụng vĩnh viễn không thời hạn, hỗ trợ online 24/7 &amp; miễn phí cập nhật trọn đời.</p>
+                        <div class="plan-price">
+                            <span class="price-value" style="color: #4caf50;">5.940.000đ</span>
                             <span class="price-period">/vĩnh viễn</span>
                         </div>
                     </div>
@@ -1693,6 +1778,17 @@
                     };
                 });
 
+                // 1.8 POS Pricing Mode Switcher (Onsite vs Online)
+                const posTabBtns = document.querySelectorAll('.pos-pricing-tab-btn');
+                posTabBtns.forEach(btn => {
+                    btn.onclick = function() {
+                        const targetId = btn.getAttribute('data-pos-target');
+                        if (window.switchPosPricing) {
+                            window.switchPosPricing(targetId, btn);
+                        }
+                    };
+                });
+
                 // 2. Features Tab Switcher Logic
                 const tabBtns = document.querySelectorAll('.tab-btn');
                 const tabContents = document.querySelectorAll('.tab-content');
@@ -1749,6 +1845,37 @@
 
                 // 4. Contact Form Submission (Removed since form is replaced by corporate info)
             }
+
+            // Function to switch POS Pricing tab (Onsite vs Online)
+            window.switchPosPricing = function(targetId, btn) {
+                const posTabBtns = document.querySelectorAll('.pos-pricing-tab-btn');
+                const posPricingGrids = document.querySelectorAll('.pricing-grid-view');
+                const posPricingNote = document.getElementById('pos-pricing-note');
+
+                posTabBtns.forEach(function(b) {
+                    if (b === btn || b.getAttribute('data-pos-target') === targetId) {
+                        b.classList.add('active');
+                    } else {
+                        b.classList.remove('active');
+                    }
+                });
+
+                posPricingGrids.forEach(function(grid) {
+                    if (grid.id === targetId) {
+                        grid.classList.add('active');
+                    } else {
+                        grid.classList.remove('active');
+                    }
+                });
+
+                if (posPricingNote) {
+                    if (targetId === 'pricing-online') {
+                        posPricingNote.innerHTML = '<i class="fa-solid fa-bolt" style="color: #f7c948; margin-right: 6px;"></i><strong>Giá Online Tiết Kiệm:</strong> Đầy đủ 100% tính năng, kích hoạt dùng ngay sau 5 phút qua Ultraview/Zalo với chi phí tối ưu nhất.';
+                    } else {
+                        posPricingNote.innerHTML = '<i class="fa-solid fa-circle-info" style="color: var(--secondary-color); margin-right: 6px;"></i><strong>Gói Triển Khai Tận Nơi:</strong> Kỹ thuật viên CANPOS đến tận quán lắp ráp máy, kết nối máy in và đào tạo nhân viên trực tiếp.';
+                    }
+                }
+            };
 
             // Function to switch phone image on right device
             window.switchRightPhone = function(src, btn) {

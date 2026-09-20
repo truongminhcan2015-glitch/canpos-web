@@ -1318,11 +1318,128 @@ img {
     transform: translateX(22px);
 }
 
+/* POS Pricing Type Tabs */
+.pos-pricing-tabs-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 32px 0 20px 0;
+}
+
+.pos-pricing-tabs {
+    display: inline-flex;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-glass);
+    border-radius: 50px;
+    padding: 6px;
+    gap: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(16px);
+}
+
+.pos-pricing-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 26px;
+    border-radius: 40px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+}
+
+.pos-pricing-tab-btn i {
+    font-size: 1.05rem;
+}
+
+.pos-pricing-tab-btn:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.pos-pricing-tab-btn.active {
+    background: var(--gradient-accent);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 20px rgba(247, 37, 133, 0.4);
+}
+
+.pos-tab-badge {
+    background: #10b981;
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
 .pricing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 24px;
-    margin-top: 60px;
+    margin-top: 30px;
+}
+
+.pricing-grid-view {
+    display: none;
+    animation: fadeInGrid 0.35s ease-in-out forwards;
+}
+
+.pricing-grid-view.active {
+    display: grid;
+}
+
+@keyframes fadeInGrid {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .pos-pricing-tabs-wrapper {
+        margin: 20px 0 15px 0 !important;
+        width: 100% !important;
+    }
+    .pos-pricing-tabs {
+        display: flex !important;
+        flex-direction: row !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        border-radius: 50px !important;
+        padding: 4px !important;
+        gap: 4px !important;
+        box-sizing: border-box !important;
+    }
+    .pos-pricing-tab-btn {
+        flex: 1 !important;
+        width: auto !important;
+        justify-content: center !important;
+        padding: 9px 6px !important;
+        font-size: 0.75rem !important;
+        border-radius: 40px !important;
+        gap: 5px !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+    }
+    .pos-pricing-tab-btn i {
+        font-size: 0.85rem !important;
+    }
+    .pos-tab-badge {
+        font-size: 0.55rem !important;
+        padding: 1px 5px !important;
+    }
 }
 
 .pricing-card {
@@ -4022,10 +4139,17 @@ html, body {
     
     /* Pricing on Mobile (Bảng giá 1 hàng 2 thẻ cân đối, siêu gọn gàng) */
     .pricing-grid {
-        display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 10px !important;
         margin-top: 20px !important;
+    }
+
+    .pricing-grid-view {
+        display: none !important;
+    }
+
+    .pricing-grid-view.active {
+        display: grid !important;
     }
 
     .addon-pricing-container {
